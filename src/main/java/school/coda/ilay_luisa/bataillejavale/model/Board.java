@@ -47,7 +47,7 @@ public final class Board {
         }
     }
     public AttackResult attack(int row, int col) {
-        Cat target = oceanGrid[row][col];
+        Cat target = oceanGrid[row] [col];
         if (target == null) {
             return new AttackResult(false, false, null);
         }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" alignment="CENTER"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.MenuController">
+
+    <Label text="😺BATAILLE NAVALE DES CHATS" style="-fx-font-size: 24px" />
+    <Button text="Nouvelle Partie" onAction="#startGame"/>
+    <Label text="Projet réalisé par Ilay et Luisa"/>
+</VBox>
