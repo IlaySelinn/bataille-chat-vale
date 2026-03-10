@@ -1,24 +1,26 @@
 package school.coda.ilay_luisa.bataillejavale.model;
 
 
-//
-public abstract class Cat
-{
-    private final String name;
-    private final int size;
-    private int hits;
-    private boolean isAsleep;
-    private int HP;
+import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 
-    public Cat(String name, int size)
+//
+public class Cat
+{
+    private final CatType name;
+    private final int size;
+
+    private int hits;///
+    private boolean isAsleep;
+
+
+    public Cat(CatType name, int size)
     {
         this.name = name;
         this.size = size;
         this.hits = 0;
         this.isAsleep = false;
-        this.HP = 0;
     }
-    public String getName() {
+    public CatType getName() {
         return name;
     }
     public int getSize() {
@@ -31,18 +33,12 @@ public abstract class Cat
         return isAsleep;
     }
 
-    public void takeHit()
-    {
-        if (isAsleep) //
-        {
-            return;
-        }
-        this.hits++;
+    public AttackResult takeHit() {
 
-        if (this.hits >= size)
-        {
-            this.isAsleep = true; // pour couler le chat!
-            System.out.println("est coulé! (Zzz...)");
-        }
+        boolean isHit;
+        isHit = hits > 0;
+// todo : gerer comment on sait que le chat a ete touché
+        return new AttackResult(isHit, this.isAsleep, this.name);
+        /// si le chat est déjà endormie, on passe cette étape
     }
 }
