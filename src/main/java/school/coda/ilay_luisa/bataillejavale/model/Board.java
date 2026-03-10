@@ -1,10 +1,9 @@
 package school.coda.ilay_luisa.bataillejavale.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 
 /// Cette classe gère le board
-public class Board {
+public final class Board {
     ///  Grille océan : celle de nos chats se retrouve
     private final Cat[][] oceanGrid = new Cat[10][10];
     /// Grille radar :  celle de rival
@@ -32,7 +31,7 @@ public class Board {
         int catSize = type.getSize();
 
         /// Créer l'objet "cat"
-        Cat newCat = new Cat(type, catSize){};
+        Cat newCat = new Cat(type, catSize);
 
         ///Loop : la logique de row/col
         for (int i = 0; i < type.getSize(); i++)
@@ -46,5 +45,12 @@ public class Board {
                 /// Vértical
                 oceanGrid[row +i ][col] = newCat;
         }
+    }
+    public AttackResult attack(int row, int col) {
+        Cat target = oceanGrid[row][col];
+        if (target == null) {
+            return new AttackResult(false, false, null);
+        }
+        return target.takeHit();
     }
 }

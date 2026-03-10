@@ -34,11 +34,14 @@ public class Cat
     }
 
     public AttackResult takeHit() {
+        hits++;
+        boolean sunk = hits >=size;
 
-        boolean isHit;
-        isHit = hits > 0;
-// todo : gerer comment on sait que le chat a ete touché
-        return new AttackResult(isHit, this.isAsleep, this.name);
+        if (sunk) {
+            isAsleep = true;
+        }
+
+             return new AttackResult(true, sunk, name);
         /// si le chat est déjà endormie, on passe cette étape
     }
 }

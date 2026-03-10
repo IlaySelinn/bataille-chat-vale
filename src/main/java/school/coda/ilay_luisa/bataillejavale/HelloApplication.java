@@ -9,6 +9,9 @@ public class HelloApplication extends Application
     @Override
     public void start(Stage stage)
     {
+
+
+
         stage.setTitle("Bataille Chat-vale!");
         stage.show();
     }
