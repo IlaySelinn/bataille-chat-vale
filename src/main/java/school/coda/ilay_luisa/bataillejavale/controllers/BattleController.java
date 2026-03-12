@@ -1,5 +1,6 @@
 package school.coda.ilay_luisa.bataillejavale.controllers;
 
+import com.almasb.fxgl.pathfinding.astar.AStarGridView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,13 +8,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import school.coda.ilay_luisa.bataillejavale.model.Game;
 import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
+import school.coda.ilay_luisa.bataillejavale.view.BoardViev;
 
 public class BattleController {
 
     @FXML
-    private GridPane playerGrid;   // Grille océan du joueur
+    private BoardViev playerGrid;   // Grille océan du joueur
     @FXML
-    private GridPane radarGrid;    // Grille radar
+    private BoardViev radarGrid;    // Grille radar
     @FXML
     private Label turnLabel;
     @FXML
@@ -39,7 +41,7 @@ public class BattleController {
                 if (game.getPlayer().getBoard().getOceanGrid()[row][col] != null) {
                     cell.setStyle("-fx-background-color: gray;"); // Chat présent
                 }
-                playerGrid.add(cell, col, row);
+              ///  playerGrid.add(cell, col, row);
             }
         }
     }
@@ -57,7 +59,7 @@ public class BattleController {
                     handlePlayerAttack(r, c, cell);
                 });
 
-                radarGrid.add(cell, col, row);
+              ///  radarGrid.add(cell, col, row);
             }
         }
     }

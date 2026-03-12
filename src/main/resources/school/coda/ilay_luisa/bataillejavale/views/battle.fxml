@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
 
+<?import school.coda.ilay_luisa.bataillejavale.view.BoardViev?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.BattleController"
             prefWidth="900" prefHeight="600">
@@ -21,13 +22,13 @@
         <!-- Grille Océan du joueur -->
         <VBox alignment="CENTER" spacing="10">
             <Label text="Vos Chats"/>
-            <GridPane fx:id="playerGrid" hgap="2" vgap="2"/>
+            <BoardViev fx:id="playerGrid"/>
         </VBox>
 
         <!-- Grille Radar -->
         <VBox alignment="CENTER" spacing="10">
             <Label text="Radar"/>
-            <GridPane fx:id="radarGrid" hgap="2" vgap="2"/>
+            <BoardViev fx:id="radarGrid" />
         </VBox>
     </HBox>
 

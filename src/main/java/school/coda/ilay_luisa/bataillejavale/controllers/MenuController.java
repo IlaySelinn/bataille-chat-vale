@@ -42,8 +42,10 @@ public class MenuController implements Initializable
         enemyViev = new BoardViev();
         randomFight = new RandomFight();
 
-        /// Mon grid
-        ///drawInitialStade();/// method oluştur
+        /// affichage de me chats
+      ///  drawInitialStade();/// method oluştur
+
+        ///if (gameContenier)
     }
 
     @FXML
