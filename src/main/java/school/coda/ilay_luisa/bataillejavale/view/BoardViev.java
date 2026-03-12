@@ -3,62 +3,94 @@ package school.coda.ilay_luisa.bataillejavale.view;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import school.coda.ilay_luisa.bataillejavale.model.Board;
 
 public class BoardViev extends Canvas
 {
-    private final int cellSize = 50;
-    private final int cellNumber = 10; //10*10
+    /// Zone pour les lettres et chiffres
+    private final int offset = 30;
+    private final int cellSize = 45;
+    private final int cellNumber = 10; // 10*10
 
-    public int getRow(double y) {
-        return (int) (y / (cellSize + 1));
+    public int getRow(double y)
+    {
+        return (int) ((y - offset) / (cellSize + 1));
     }
 
-    public int getCol(double x) {
-        return (int) (x / (cellSize + 1));
+    public int getCol(double x)
+    {
+        return (int) ((x - offset) / (cellSize + 1));
     }
 
+    // --- LA CORRECTION EST ICI ---
+    // C'est le constructeur par défaut que le fichier FXML utilise.
     public BoardViev()
     {
         super(510, 510);
         drawGrid();
     }
 
+    // Tu peux garder celui-ci si tu en as besoin ailleurs dans ton code Java
+    public BoardViev(Board playerBoard)
+    {
+        super(510, 510);
+        drawGrid();
+    }
+    // -----------------------------
+
     private void drawGrid()
     {
         GraphicsContext gc = this.getGraphicsContext2D();
-        /// Couleur de lu océan
-        gc.setFill(Color.DODGERBLUE);
+
+        /// Fond blanc pour les étiquettes (A-J, 1-10)
+        gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, getWidth(), getHeight());
 
-        /// Couleur de grilles
+        /// Dessiner les lettres (A-J)
+        gc.setFill(Color.BLACK);
+        gc.setFont(new Font("Arial", 16));
+        String[] lettrers = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+        for (int i = 0; i < cellNumber; i++)
+        {
+            double xPos = offset + (i * cellSize) + i + (cellSize / 3.0);
+            gc.fillText(lettrers[i], xPos, 20);
+        }
+
+        // Dessiner les chiffres (1-10)
+        for (int i = 0; i < cellNumber; i++)
+        {
+            double yPos = offset + (i * cellSize) + i + (cellSize / 1.5);
+            gc.fillText(String.valueOf(i + 1), 5, yPos);
+        }
+
+        /// Couleur de l'océan (Commence après l'offset)
+        gc.setFill(Color.DODGERBLUE);
+        gc.fillRect(offset, offset, getWidth() - offset, getHeight() - offset);
+
+        /// Couleur des grilles
         gc.setStroke(Color.WHITE);
         gc.setLineWidth(1);
 
-        for (int i = 0; i <= cellNumber; i++)
-        {
-            double pos = (cellSize * i) + i;
+        for (int i = 0; i <= cellNumber; i++) {
+            double pos = (cellSize * i) + i + offset;
             /// lignes verticales
-            gc.strokeLine(pos, 0, pos, getHeight());
-            /// lignes horizontal
-            gc.strokeLine(0, pos, getWidth(), pos);
+            gc.strokeLine(pos, offset, pos, getHeight());
+            /// lignes horizontales
+            gc.strokeLine(offset, pos, getWidth(), pos);
         }
     }
 
-    /// Pour marquer les chts et les hits
+    /// Pour marquer les chats et les hits
     public void markHit(int row, int col, Color color)
     {
         GraphicsContext gc = this.getGraphicsContext2D();
         gc.setFill(color);
 
-        double x = (col * cellSize) + col + 1;
-        double y = (row * cellSize) + row + 1;
+        // On ajoute l'offset pour dessiner dans la grille
+        double x = offset + (col * cellSize) + col + 1;
+        double y = offset + (row * cellSize) + row + 1;
 
         gc.fillRect(x, y, cellSize, cellSize);
-
-
     }
 }
-
-
-
-

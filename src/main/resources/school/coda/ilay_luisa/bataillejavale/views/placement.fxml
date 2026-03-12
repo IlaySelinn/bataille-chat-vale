@@ -1,28 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import school.coda.ilay_luisa.bataillejavale.view.BoardViev?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.PlacementController">
+
+    <!-- Titre -->
     <top>
         <Label text="Placement des chats"
                style="-fx-font-size: 20px;"
                BorderPane.alignment="CENTER"/>
     </top>
 
+    <!-- Canvas du plateau -->
     <center>
-        <school.coda.ilay_luisa.bataillejavale.view.BoardViev fx:id="boardView" />
-
+        <BoardViev fx:id="boardView" onMouseClicked="#handleBoardViewClick"/>
     </center>
 
+    <!-- Contrôles -->
     <bottom>
-        <VBox alignment="CENTER" spacing="10">
-            <ToggleButton fx:id="toggleOrientationButton" text="Orientation"/>
+        <VBox spacing="10" alignment="CENTER">
+
+            <!-- Orientation toggle (optionnel) -->
+            <ToggleButton fx:id="toggleOrientationButton" text="Orientation: H"/>
+
+            <!-- Menus déroulants -->
+            <HBox spacing="10" alignment="CENTER">
+                <!-- Ligne 1 à 10 -->
+                <Label text="Ligne:"/>
+                <ComboBox fx:id="lineCombo" prefWidth="60"/>
+
+                <!-- Colonne A à J -->
+                <Label text="Colonne:"/>
+                <ComboBox fx:id="colCombo" prefWidth="60"/>
+
+                <!-- Orientation H/V -->
+                <Label text="Orientation:"/>
+                <ComboBox fx:id="orientationCombo" prefWidth="80"/>
+
+                <!-- Type de chat -->
+                <Label text="Chat:"/>
+                <ComboBox fx:id="catTypeCombo" prefWidth="120"/>
+
+                <!-- Bouton placer -->
+                <Button text="Placer" onAction="#placeCatFromMenu"/>
+            </HBox>
+
+            <!-- Bouton commencer bataille -->
             <Button text="Commencer la bataille" onAction="#startBattle"/>
         </VBox>
     </bottom>
+
 </BorderPane>

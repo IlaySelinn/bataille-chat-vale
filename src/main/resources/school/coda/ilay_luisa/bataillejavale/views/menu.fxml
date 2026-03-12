@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
-<?import school.coda.ilay_luisa.bataillejavale.view.BoardViev?>
-<VBox spacing="20" alignment="CENTER"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.MenuController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.MenuController">
 
-    <Label text="😺BATAILLE NAVALE DES CHATS" style="-fx-font-size: 24px" />
-    <Button text="Nouvelle Partie" onAction="#startGame"/>
-    <Label text="Projet réalisé par Ilay et Luisa"/>
+    <ImageView fitWidth="2000" fitHeight="1000" preserveRatio="false">
+        <image>
+            <Image url="@../image/catimg.png"/>
+        </image>
+    </ImageView>
 
-    <BoardViev fx:id="boardView" onMouseClicked="#handleBoardViewClick"/>
+    <BorderPane>
 
-    <Button fx:id="startButton"
-            text="Nouvelle Partie"
-            onAction="#startGame"/>
-</VBox>
+        <top>
+            <VBox alignment="TOP_CENTER" style="-fx-padding: 60 0 0 0;">
+                <Label text="BATAILLE NAVALE DES CHATS" style="-fx-font-size: 48px; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </VBox>
+        </top>
+
+        <bottom>
+            <VBox spacing="20" alignment="BOTTOM_CENTER" style="-fx-padding: 0 0 50 0;">
+                <Button text="Nouvelle Partie" onAction="#startGame"
+                        style="-fx-font-size: 22px; -fx-padding: 15px 40px; -fx-font-weight: bold; -fx-cursor: hand;"/>
+
+                <Label text="Projet réalisé par Ilay et Luisa" style="-fx-text-fill: white; -fx-font-size: 14px;"/>
+            </VBox>
+        </bottom>
+
+    </BorderPane>
+
+</StackPane>

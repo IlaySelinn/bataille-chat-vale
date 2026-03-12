@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
@@ -20,50 +21,35 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class MenuController implements Initializable
+public class MenuController
 {
    @FXML
     private HBox gameController;
 
-    private Board playerLogic;
-    private Board enemyLogic;
-    private BoardViev playerViev;
-    private BoardViev enemyViev;
-
-    private RandomFight randomFight;
-    private boolean isPlayerTurn = true;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-        playerLogic = new Board();
-        enemyLogic = new Board();
-        playerViev = new BoardViev();
-        enemyViev = new BoardViev();
-        randomFight = new RandomFight();
 
         /// affichage de me chats
-      ///  drawInitialStade();/// method oluştur
+      ///  drawInitialStade();/// method oluştur!
 
         ///if (gameContenier)
-    }
+///    }
 
     @FXML
     public void startGame(ActionEvent event) throws Exception {
 
         System.out.println("Nouvelle partie lancée !");
 
+        Node button = (Node) event.getSource();
+
+        Scene scene = button.getScene();
+
         FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/school/coda/ilay_luisa/bataillejavale/views/placement.fxml")
         );
 
-        Scene scene = new Scene(loader.load());
+        Parent placementFxml = loader.load();
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-    }
+        scene.setRoot(placementFxml);
 
-    public void handleBoardViewClick(MouseEvent mouseEvent) {
-        System.out.println("clique sur plateau");
+
     }
 }

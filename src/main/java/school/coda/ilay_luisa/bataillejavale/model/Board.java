@@ -29,6 +29,7 @@ public final class Board {
     // Nyan a1 -> a-2
     // placer nyan en 0 0
     //oceanGrid [0][0] = new Cat("Ukulele", 3);
+
     private void setupFixFleet() {
         placeCat(CatType.TOM, 0, 0, true); //Porte-avion : Tom (5 cases)
         placeCat(CatType.PUFI, 2, 0, false);// Cuirassé : Pufi (4 cases)
@@ -36,6 +37,8 @@ public final class Board {
         placeCat(CatType.UKULELE, 6, 1, false);// Sous-marin : Ukulele (3 cases)
         placeCat(CatType.GÜMÜŞ, 9, 8, true); // PATROUILLEUR: Gümüş (2 cases)
     }
+
+
 
     public void placeCat(CatType type, int row, int col, boolean isHorizontal) {
         String catName = type.name();

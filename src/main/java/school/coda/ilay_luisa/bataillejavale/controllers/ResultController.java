@@ -30,3 +30,6 @@ public class ResultController {
         stage.setScene(new Scene(loader.load()));
     }
 }
+
+/// simetrik yap!
+
