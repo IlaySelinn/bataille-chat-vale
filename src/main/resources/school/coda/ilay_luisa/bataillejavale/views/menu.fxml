@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import school.coda.ilay_luisa.bataillejavale.view.BoardViev?>
 <VBox spacing="20" alignment="CENTER"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.MenuController">
@@ -13,4 +14,6 @@
     <Label text="😺BATAILLE NAVALE DES CHATS" style="-fx-font-size: 24px" />
     <Button text="Nouvelle Partie" onAction="#startGame"/>
     <Label text="Projet réalisé par Ilay et Luisa"/>
+
+    <BoardViev fx:id="boardView" onMouseClicked="#handleBoardViewClick"></BoardViev>
 </VBox>

@@ -6,12 +6,12 @@ import javafx.scene.paint.Color;
 
 public class BoardViev extends Canvas
 {
-    private final int cellSize = 30;
-    private final int cellNumber = 10;
+    private final int cellSize = 50;
+    private final int cellNumber = 10; //10*10
 
     public BoardViev()
     {
-        super(311, 311);
+        super(511, 511);
         drawGrid();
     }
 
@@ -19,7 +19,7 @@ public class BoardViev extends Canvas
     {
         GraphicsContext gc = this.getGraphicsContext2D();
         /// Couleur de lu océan
-        gc.setFill(Color.BLUE);
+        gc.setFill(Color.DODGERBLUE);
         gc.fillRect(0, 0, getWidth(), getHeight());
 
         /// Couleur de grilles
@@ -37,7 +37,8 @@ public class BoardViev extends Canvas
     }
 
     /// Pour marquer les chts et les hits
-    public void markHit(int row, int col, Color color) {
+    public void markHit(int row, int col, Color color)
+    {
         GraphicsContext gc = this.getGraphicsContext2D();
         gc.setFill(color);
 

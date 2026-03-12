@@ -9,7 +9,7 @@ public class Cat
     private final CatType name;
     private final int size;
 
-    private int hits;///
+    private int hits;
     private boolean isAsleep;
 
 
@@ -42,6 +42,6 @@ public class Cat
         }
 
              return new AttackResult(true, sunk, name);
-        /// si le chat est déjà endormie, on passe cette étape
+        /// si le chat est déjà endormi, on passe cette étape
     }
 }

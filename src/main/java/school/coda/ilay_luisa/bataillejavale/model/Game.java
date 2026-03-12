@@ -1,6 +1,6 @@
 package school.coda.ilay_luisa.bataillejavale.model;
 
-import school.coda.ilay_luisa.bataillejavale.fight.IAfight;
+import school.coda.ilay_luisa.bataillejavale.fight.RandomFight;
 import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 import school.coda.ilay_luisa.bataillejavale.rules.TurnManager;
 
@@ -9,7 +9,7 @@ public class Game {
     private final Player player;
     private final Player ia;
 
-    private final IAfight iaAI = new IAfight();
+    private final RandomFight iaAI = new RandomFight();
     private final TurnManager turnManager;
 
     public Game(String playerName) {
