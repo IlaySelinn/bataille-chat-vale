@@ -23,8 +23,6 @@
     <bottom>
         <VBox spacing="10" alignment="CENTER">
 
-            <!-- Orientation toggle (optionnel) -->
-            <ToggleButton fx:id="toggleOrientationButton" text="Orientation: H"/>
 
             <!-- Menus déroulants -->
             <HBox spacing="10" alignment="CENTER">

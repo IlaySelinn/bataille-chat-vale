@@ -23,15 +23,13 @@ public class BoardViev extends Canvas
         return (int) ((x - offset) / (cellSize + 1));
     }
 
-    // --- LA CORRECTION EST ICI ---
-    // C'est le constructeur par défaut que le fichier FXML utilise.
+
     public BoardViev()
     {
         super(510, 510);
         drawGrid();
     }
 
-    // Tu peux garder celui-ci si tu en as besoin ailleurs dans ton code Java
     public BoardViev(Board playerBoard)
     {
         super(510, 510);

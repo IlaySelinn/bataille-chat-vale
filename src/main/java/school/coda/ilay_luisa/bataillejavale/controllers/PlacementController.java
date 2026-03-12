@@ -52,16 +52,6 @@ public class PlacementController {
         orientationCombo.getSelectionModel().selectFirst();
         catTypeCombo.getSelectionModel().selectFirst();
 
-        // ToggleButton pour orientation rapide
-        toggleOrientationButton.setOnAction(e -> {
-            if (toggleOrientationButton.isSelected()) {
-                toggleOrientationButton.setText("Orientation: V");
-                orientationCombo.getSelectionModel().select("V");
-            } else {
-                toggleOrientationButton.setText("Orientation: H");
-                orientationCombo.getSelectionModel().select("H");
-            }
-        });
     }
 
     @FXML
