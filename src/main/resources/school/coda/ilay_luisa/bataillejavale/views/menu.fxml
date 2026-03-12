@@ -15,5 +15,9 @@
     <Button text="Nouvelle Partie" onAction="#startGame"/>
     <Label text="Projet réalisé par Ilay et Luisa"/>
 
-    <BoardViev fx:id="boardView" onMouseClicked="#handleBoardViewClick"></BoardViev>
+    <BoardViev fx:id="boardView" onMouseClicked="#handleBoardViewClick"/>
+
+    <Button fx:id="startButton"
+            text="Nouvelle Partie"
+            onAction="#startGame"/>
 </VBox>

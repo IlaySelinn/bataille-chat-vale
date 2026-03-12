@@ -13,6 +13,7 @@ public class MainMenu extends Application {
         FXMLLoader loader = new FXMLLoader(
                 MainMenu.class.getResource("/school/coda/ilay_luisa/bataillejavale/views/menu.fxml")
         );
+
         Scene scene = new Scene(loader.load(), 600, 400);
 
         stage.setTitle("Bataille Navale des Chats");

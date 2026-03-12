@@ -13,6 +13,16 @@ public final class Board {
         setupFixFleet();
     }
 
+    public boolean allCatsAsleep() {
+        for (int row = 0; row < 10; row++) {
+            for (int col = 0; col < 10; col++) {
+                Cat cat = oceanGrid[row][col];
+                if (cat != null && !cat.isAsleep()) return false;
+            }
+        }
+        return true;
+    }
+
     ///  l'endroit où on met les chats sur le board
 
 
@@ -26,6 +36,7 @@ public final class Board {
         placeCat(CatType.UKULELE, 6, 1, false);// Sous-marin : Ukulele (3 cases)
         placeCat(CatType.GÜMÜŞ, 9, 8, true); // PATROUILLEUR: Gümüş (2 cases)
     }
+
     public void placeCat(CatType type, int row, int col, boolean isHorizontal) {
         String catName = type.name();
         int catSize = type.getSize();
@@ -34,23 +45,39 @@ public final class Board {
         Cat newCat = new Cat(type, catSize);
 
         ///Loop : la logique de row/col
-        for (int i = 0; i < type.getSize(); i++)
-        {
-            if (isHorizontal)
-            {
+        for (int i = 0; i < type.getSize(); i++) {
+            if (isHorizontal) {
                 ///Horizontal
-                oceanGrid[row][col + i ] =  newCat;
-            }
-            else
-                /// Vértical
-                oceanGrid[row +i ][col] = newCat;
+                oceanGrid[row][col + i] = newCat;
+            } else
+            /// Vértical
+                oceanGrid[row + i][col] = newCat;
         }
     }
-    public AttackResult attack(int row, int col) {
-        Cat target = oceanGrid[row] [col];
-        if (target == null) {
+    public AttackResult attack(int row, int col)
+    {
+        /// Contrôler s'il y a un chat
+        Cat target = oceanGrid[row][col];
+
+        /// S`il n'y a pas de chat "Raté"
+        if (target == null)
+        {
+            radarGrid[row][col] = 1;
             return new AttackResult(false, false, null);
         }
-        return target.takeHit();
+        ///  S'il y a un chat "Touché!"
+        AttackResult result = target.takeHit();
+        radarGrid[row][col] = 2;
+
+        return result;
+    }
+
+    public Cat[][] getOceanGrid() {
+        return oceanGrid;
+    }
+
+    public int[][] getRadarGrid() {
+        return radarGrid;
     }
 }
+

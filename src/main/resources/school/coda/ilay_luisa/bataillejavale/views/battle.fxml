@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.BattleController"
+            prefWidth="900" prefHeight="600">
+
+    <!-- Haut : Titre et numéro de tour -->
+    <top>
+        <VBox alignment="CENTER" spacing="10" BorderPane.alignment="CENTER">
+            <Label text="Bataille Navale des Chats" style="-fx-font-size: 24px;"/>
+            <Label fx:id="turnLabel" text="Tour n°1" style="-fx-font-size: 16px;"/>
+        </VBox>
+    </top>
+
+    <!-- Centre : Grilles du joueur et radar -->
+    <HBox spacing="50" alignment="CENTER" BorderPane.alignment="CENTER">
+        <!-- Grille Océan du joueur -->
+        <VBox alignment="CENTER" spacing="10">
+            <Label text="Vos Chats"/>
+            <GridPane fx:id="playerGrid" hgap="2" vgap="2"/>
+        </VBox>
+
+        <!-- Grille Radar -->
+        <VBox alignment="CENTER" spacing="10">
+            <Label text="Radar"/>
+            <GridPane fx:id="radarGrid" hgap="2" vgap="2"/>
+        </VBox>
+    </HBox>
+
+    <!-- Bas : Historique des coups -->
+    <bottom>
+        <VBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER">
+            <Label text="Historique des coups"/>
+            <TextArea fx:id="historyLabel" prefHeight="150" prefWidth="800" editable="false"/>
+        </VBox>
+    </bottom>
+
+</BorderPane>

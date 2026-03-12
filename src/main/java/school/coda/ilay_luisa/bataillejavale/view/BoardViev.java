@@ -9,9 +9,17 @@ public class BoardViev extends Canvas
     private final int cellSize = 50;
     private final int cellNumber = 10; //10*10
 
+    public int getRow(double y) {
+        return (int) (y / (cellSize + 1));
+    }
+
+    public int getCol(double x) {
+        return (int) (x / (cellSize + 1));
+    }
+
     public BoardViev()
     {
-        super(511, 511);
+        super(510, 510);
         drawGrid();
     }
 
@@ -46,6 +54,8 @@ public class BoardViev extends Canvas
         double y = (row * cellSize) + row + 1;
 
         gc.fillRect(x, y, cellSize, cellSize);
+
+
     }
 }
 

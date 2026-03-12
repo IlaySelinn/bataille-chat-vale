@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.PlacementController">
+    <top>
+        <Label text="Placement des chats"
+               style="-fx-font-size: 20px;"
+               BorderPane.alignment="CENTER"/>
+    </top>
+
+    <center>
+        <school.coda.ilay_luisa.bataillejavale.view.BoardViev fx:id="boardView" />
+
+    </center>
+
+    <bottom>
+        <VBox alignment="CENTER" spacing="10">
+            <ToggleButton fx:id="toggleOrientationButton" text="Orientation"/>
+            <Button text="Commencer la bataille" onAction="#startBattle"/>
+        </VBox>
+    </bottom>
+</BorderPane>

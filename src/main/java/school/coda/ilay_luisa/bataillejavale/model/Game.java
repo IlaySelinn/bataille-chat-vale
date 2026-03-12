@@ -30,8 +30,10 @@ public class Game {
     }
 
     public AttackResult iaTurn() {
-
-        CoordinatePoints shot = iaAI.chooseAttack();
+        CoordinatePoints shot;
+        do {
+            shot = iaAI.chooseAttack();
+        } while (player.getBoard().getRadarGrid()[shot.getRow()][shot.getCol()] != 0);
 
         AttackResult result = player.getBoard().attack(
                 shot.getRow(),
@@ -39,7 +41,6 @@ public class Game {
         );
 
         turnManager.nextTurn();
-
         return result;
     }
 

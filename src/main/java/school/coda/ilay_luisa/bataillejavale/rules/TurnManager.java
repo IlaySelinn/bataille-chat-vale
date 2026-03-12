@@ -1,5 +1,6 @@
 package school.coda.ilay_luisa.bataillejavale.rules;
 
+import school.coda.ilay_luisa.bataillejavale.model.Cat;
 import school.coda.ilay_luisa.bataillejavale.model.Player;
 
 public class TurnManager {
@@ -27,5 +28,15 @@ public class TurnManager {
         opponent = temp;
 
         turnNumber++;
+    }
+    public boolean isGameOver(Player player) {
+        for (Cat[] row : player.getBoard().getOceanGrid()) {
+            for (Cat cat : row) {
+                if (cat != null && !cat.isAsleep()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

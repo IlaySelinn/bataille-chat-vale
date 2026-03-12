@@ -20,4 +20,8 @@ public record AttackResult (
         return "personne a été touché";
 
         }
+
+    public boolean isHit() {
+        return  hits;
     }
+}
