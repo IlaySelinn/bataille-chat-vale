@@ -1,15 +1,29 @@
 package school.coda.ilay_luisa.bataillejavale.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import school.coda.ilay_luisa.bataillejavale.model.Game;
 import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 import school.coda.ilay_luisa.bataillejavale.view.BoardView;
 
+import java.io.IOException;
+
 public class BattleController {
+
+    // L'erreur de syntaxe est corrigée ici (point-virgule ajouté)
+    private Image imageTom;
+    private Game game;
+
+    // Le tableau qui mémorise tes tirs (false par défaut)
+    private boolean[][] alreadyShot = new boolean[10][10];
 
     @FXML
     private BoardView playerGrid;   // La grille avec tes chats
@@ -23,7 +37,12 @@ public class BattleController {
     @FXML
     private TextArea historyLabel;
 
-    private Game game;
+
+   /*public void initialize()
+    {
+
+    }
+    */
 
     /**
      * Méthode appelée par PlacementController pour transmettre le plateau.
@@ -63,8 +82,17 @@ public class BattleController {
         int r = radarGrid.getRow(event.getY());
         int c = radarGrid.getCol(event.getX());
 
-        // Vérifier que le clic est bien dans la zone de l'océan (pas sur les lettres/chiffres)
+        // Vérifier que le clic est bien dans la zone de l'océan
         if (r >= 0 && r < 10 && c >= 0 && c < 10) {
+
+            // --- NOUVEAUTÉ : On vérifie si tu as déjà tiré ici ! ---
+            if (alreadyShot[r][c]) {
+                historyLabel.appendText("\nCapitaine, on a déjà tiré ici ! Choisissez une autre cible.");
+                return; // On arrête tout, l'IA ne riposte pas et tu peux rejouer.
+            }
+
+            // Si c'est un nouveau tir, on le mémorise pour la prochaine fois
+            alreadyShot[r][c] = true;
 
             // --- 1. ATTAQUE DU JOUEUR ---
             AttackResult playerResult = game.attack(r, c);
@@ -76,10 +104,9 @@ public class BattleController {
                 radarGrid.markHit(r, c, Color.LIGHTBLUE);
             }
 
-            // Mettre à jour l'historique (avec conversion de la colonne en Lettre pour faire joli)
+            // Mettre à jour l'historique
             String colLetter = String.valueOf((char) ('A' + c));
             historyLabel.appendText("\n\nTour " + game.getTurnNumber() + " - VOUS : Tir en " + colLetter + (r + 1) + " -> " + playerResult.message());
-
 
             // --- 2. RIPOSTE DE L'IA ---
             AttackResult iaResult = game.iaTurn();
@@ -90,6 +117,9 @@ public class BattleController {
 
             // On met à jour le numéro du tour
             updateTurnLabel();
+
+            // --- 3. VÉRIFICATION DE LA FIN DE PARTIE ---
+            checkEndGame();
         }
     }
 
@@ -117,5 +147,40 @@ public class BattleController {
         // Le TurnManager gère les tours, on l'affiche simplement
         turnLabel.setText("Tour n°" + (game.getTurnNumber() / 2 + 1));
         // Note : Je divise par 2 car ton Game ajoute +1 pour le joueur et +1 pour l'IA.
+    }
+
+    private void checkEndGame() {
+        // On vérifie si tu as gagné (l'IA n'a plus de bateaux)
+        if (game.getIA().getBoard().areAllCatsSunk()) {
+            endGame(true, "Inconnu");
+            return;
+        }
+
+        // On vérifie si l'IA a gagné (Tu n'as plus de bateaux)
+        if (game.getPlayer().getBoard().areAllCatsSunk()) {
+            // Remplace par la vraie logique de ton modèle si tu as un moyen de récupérer le dernier chat
+            String lastCat = "Dernier Chat";
+            endGame(false, lastCat);
+        }
+    }
+
+    private void endGame(boolean playerWon, String lastCatSunk) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/school/coda/ilay_luisa/bataillejavale/views/result.fxml"));
+            Parent root = loader.load();
+
+            // On passe les infos au ResultController
+            ResultController resultController = loader.getController();
+            resultController.initData(playerWon, lastCatSunk);
+
+            // On change la scène
+            Stage stage = (Stage) radarGrid.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Erreur lors du chargement de l'écran de fin.");
+        }
     }
 }

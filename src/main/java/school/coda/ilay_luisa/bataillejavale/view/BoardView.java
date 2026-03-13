@@ -71,7 +71,8 @@ public class BoardView extends Canvas
         gc.setStroke(Color.WHITE);
         gc.setLineWidth(1);
 
-        for (int i = 0; i <= cellNumber; i++) {
+        for (int i = 0; i <= cellNumber; i++)
+        {
             double pos = (cellSize * i) + i + offset;
             /// lignes verticales
             gc.strokeLine(pos, offset, pos, getHeight());

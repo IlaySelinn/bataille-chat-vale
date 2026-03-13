@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.ResultController"
-      spacing="20" alignment="CENTER">
-    <Label fx:id="resultLabel" text="Le joueur X a gagné!" style="-fx-font-size: 24px;"/>
-    <Button text="Retour au menu" onAction="#backToMenu"/>
+      spacing="30" alignment="CENTER"
+      prefWidth="1200" prefHeight="800"
+      style="-fx-background-color: #f0f4f8;">
+
+    <Label fx:id="titleLabel" text="Résultat" />
+
+    <Label fx:id="subtitleLabel" text="-" />
+
+    <Label fx:id="detailLabel" text="-" style="-fx-font-size: 20px; -fx-font-style: italic; -fx-text-fill: #555555;"/>
+
+    <Region prefHeight="50" />
+
+    <Button text="Retour au menu principal" onAction="#backToMenu"
+            style="-fx-font-size: 18px; -fx-padding: 15 30 15 30; -fx-font-weight: bold; -fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 10;"/>
+
 </VBox>

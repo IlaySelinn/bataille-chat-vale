@@ -7,29 +7,48 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
-
-import school.coda.ilay_luisa.bataillejavale.model.Player;
-
 import java.io.IOException;
+import javafx.scene.Parent;
 
 public class ResultController {
 
     @FXML
-    private Label resultLabel;
+    private Label titleLabel;
 
-    public void setWinner(Player winner) {
-        resultLabel.setText("Le joueur " + winner.getName() + " a gagné !");
+    @FXML
+    private Label subtitleLabel;
+
+    @FXML
+    private Label detailLabel;
+
+    /**
+     * Initialise l'écran de fin.
+     * @param isPlayerWinner true si c'est toi qui as gagné, false si c'est l'IA
+     * @param lastCatSunk Le nom du dernier chat coulé (utile surtout pour la défaite)
+     */
+    public void initData(boolean isPlayerWinner, String lastCatSunk) {
+        if (isPlayerWinner) {
+            titleLabel.setText("🎉 FÉLICITATIONS ! 🎉");
+            subtitleLabel.setText("TU AS GAGNÉ !");
+            detailLabel.setText("Tu as coulé toute la flotte féline de l'ordinateur !");
+            titleLabel.setStyle("-fx-font-size: 40px; -fx-text-fill: #2ecc71; -fx-font-weight: bold;");
+            subtitleLabel.setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
+        } else {
+            titleLabel.setText("☠️ DÉFAITE... ☠️");
+            subtitleLabel.setText("L'ORDINATEUR A GAGNÉ.");
+            detailLabel.setText("Ton pauvre chat " + lastCatSunk + " a été le dernier à sombrer dans les profondeurs...");
+            titleLabel.setStyle("-fx-font-size: 40px; -fx-text-fill: #e74c3c; -fx-font-weight: bold;");
+            subtitleLabel.setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
+        }
     }
 
     @FXML
     public void backToMenu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/school/coda/ilay_luisa/bataillejavale/views/menu.fxml")
-        );
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/school/coda/ilay_luisa/bataillejavale/views/menu.fxml"));
+        Parent root = loader.load();
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(loader.load()));
+        stage.setScene(new Scene(root, 1200, 800));
+        stage.show();
     }
 }
-
-/// simetrik yap!
-
