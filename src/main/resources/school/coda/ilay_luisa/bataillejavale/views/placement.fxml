@@ -43,11 +43,11 @@
                 <ComboBox fx:id="catTypeCombo" prefWidth="120"/>
 
                 <!-- Bouton placer -->
-                <Button text="Placer" onAction="#placeCatFromMenu"/>
+                <Button fx:id="placeButton" text="Placer" onAction="#placeCatFromMenu"/>
             </HBox>
 
             <!-- Bouton commencer bataille -->
-            <Button text="Commencer la bataille" onAction="#startBattle"/>
+            <Button fx:id="startButton" text="Commencer la bataille" onAction="#startBattle"/>
         </VBox>
     </bottom>
 
