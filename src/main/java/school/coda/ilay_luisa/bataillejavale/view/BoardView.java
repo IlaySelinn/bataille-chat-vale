@@ -4,9 +4,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.image.Image;
 import school.coda.ilay_luisa.bataillejavale.model.Board;
 
-public class BoardViev extends Canvas
+public class BoardView extends Canvas
 {
     /// Zone pour les lettres et chiffres
     private final int offset = 30;
@@ -24,13 +25,13 @@ public class BoardViev extends Canvas
     }
 
 
-    public BoardViev()
+    public BoardView()
     {
         super(510, 510);
         drawGrid();
     }
 
-    public BoardViev(Board playerBoard)
+    public BoardView(Board playerBoard)
     {
         super(510, 510);
         drawGrid();
@@ -90,5 +91,30 @@ public class BoardViev extends Canvas
         double y = offset + (row * cellSize) + row + 1;
 
         gc.fillRect(x, y, cellSize, cellSize);
+    }
+    /// Pour affichage des chats
+    public void drawCatImage(int row, int col, Image catImage)
+    {
+        GraphicsContext gc = this.getGraphicsContext2D();
+
+
+        double x = offset + (col * cellSize) + col + 1;
+        double y = offset + (row * cellSize) + row + 1;
+
+
+        if (catImage != null && !catImage.isError())
+        {
+            gc.setFill(Color.DODGERBLUE);
+            gc.fillRect(x, y, cellSize, cellSize);
+
+            gc.drawImage(catImage, x, y, cellSize, cellSize);
+            System.out.println("✅ Le chat a été dessiné à: " + row + "," + col);
+        }
+        else
+        {
+            System.out.println("❌ Erreur: Photo de chat introuvable ou corrompue!");
+            gc.setFill(Color.RED);
+            gc.fillRect(x, y, cellSize, cellSize);
+        }
     }
 }

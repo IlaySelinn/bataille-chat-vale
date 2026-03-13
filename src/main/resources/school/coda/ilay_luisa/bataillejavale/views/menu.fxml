@@ -10,7 +10,7 @@
 
     <ImageView fitWidth="2000" fitHeight="1000" preserveRatio="false">
         <image>
-            <Image url="@../image/catimg.png"/>
+            <Image url="@../../../../../image/catimg.png"/>
         </image>
     </ImageView>
 

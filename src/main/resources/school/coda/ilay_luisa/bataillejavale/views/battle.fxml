@@ -3,40 +3,45 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
+<?import school.coda.ilay_luisa.bataillejavale.view.BoardView?>
 
-<?import school.coda.ilay_luisa.bataillejavale.view.BoardViev?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.BattleController"
-            prefWidth="900" prefHeight="600">
+            prefWidth="1200" prefHeight="800">
 
-    <!-- Haut : Titre et numéro de tour -->
     <top>
-        <VBox alignment="CENTER" spacing="10" BorderPane.alignment="CENTER">
-            <Label text="Bataille Navale des Chats" style="-fx-font-size: 24px;"/>
+        <VBox alignment="CENTER" spacing="10">
+            <padding>
+                <Insets top="20" bottom="20"/>
+            </padding>
+            <Label text="Bataille Navale des Chats" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
             <Label fx:id="turnLabel" text="Tour n°1" style="-fx-font-size: 16px;"/>
         </VBox>
     </top>
 
-    <!-- Centre : Grilles du joueur et radar -->
-    <HBox spacing="50" alignment="CENTER" BorderPane.alignment="CENTER">
-        <!-- Grille Océan du joueur -->
-        <VBox alignment="CENTER" spacing="10">
-            <Label text="Vos Chats"/>
-            <BoardViev fx:id="playerGrid"/>
-        </VBox>
+    <center>
+        <HBox spacing="50" alignment="CENTER">
 
-        <!-- Grille Radar -->
-        <VBox alignment="CENTER" spacing="10">
-            <Label text="Radar"/>
-            <BoardViev fx:id="radarGrid" />
-        </VBox>
-    </HBox>
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="Radar (Tirez ici !)" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: red;"/>
+                <BoardView fx:id="radarGrid" />
+            </VBox>
 
-    <!-- Bas : Historique des coups -->
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="Vos Chats" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: blue;"/>
+                <BoardView fx:id="playerGrid"/>
+            </VBox>
+
+        </HBox>
+    </center>
+
     <bottom>
-        <VBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER">
-            <Label text="Historique des coups"/>
-            <TextArea fx:id="historyLabel" prefHeight="150" prefWidth="800" editable="false"/>
+        <VBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="20" bottom="20" left="50" right="50"/>
+            </padding>
+            <Label text="Historique des coups" style="-fx-font-weight: bold;"/>
+            <TextArea fx:id="historyLabel" prefHeight="150" editable="false" wrapText="true"/>
         </VBox>
     </bottom>
 

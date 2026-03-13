@@ -2,7 +2,7 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import school.coda.ilay_luisa.bataillejavale.view.BoardViev?>
+<?import school.coda.ilay_luisa.bataillejavale.view.BoardView?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.PlacementController">
@@ -16,7 +16,7 @@
 
     <!-- Canvas du plateau -->
     <center>
-        <BoardViev fx:id="boardView" onMouseClicked="#handleBoardViewClick"/>
+        <BoardView fx:id="boardView" onMouseClicked="#handleBoardViewClick"/>
     </center>
 
     <!-- Contrôles -->

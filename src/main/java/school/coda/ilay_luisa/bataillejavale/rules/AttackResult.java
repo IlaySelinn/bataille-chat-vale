@@ -12,12 +12,12 @@ public record AttackResult (
         /// si le chat est déjà endormie, on passe cette étape
         if (sunk)
         {
-            return (sunkCat.name() + "est coulé! (Zzz...)");
+            return (sunkCat.name() + " est coulé! (Zzz...)");
         }
         if (hits) {
             return (" un chat a miolé  (Toujours vivant!!)");
         }
-        return "personne a été touché";
+        return " personne a été touché";
 
         }
 
