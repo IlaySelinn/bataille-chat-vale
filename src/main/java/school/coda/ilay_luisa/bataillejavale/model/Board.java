@@ -15,16 +15,6 @@ public final class Board {
         // prêt à recevoir les chats depuis le placement.
     }
 
-    public boolean allCatsAsleep() {
-        for (int row = 0; row < 10; row++) {
-            for (int col = 0; col < 10; col++) {
-                Cat cat = oceanGrid[row][col];
-                if (cat != null && !cat.isAsleep()) return false;
-            }
-        }
-        return true;
-    }
-
     /// L'endroit où on met les chats sur le board
     public void placeCat(CatType type, int row, int col, boolean isHorizontal) {
         // La logique est nickel ici, elle va parfaitement marcher avec ton contrôleur
@@ -71,28 +61,20 @@ public final class Board {
     }
 
     public boolean areAllCatsSunk() {
-        // On parcourt toute la grille de 10x10
+
         for (int r = 0; r < 10; r++) {
             for (int c = 0; c < 10; c++) {
 
-                // S'il y a un chat sur cette case...
                 if (getOceanGrid()[r][c] != null) {
 
-                    // ... on vérifie s'il a été touché (valeur 2 dans ton radarGrid)
-                    // Si ce n'est pas 2, ça veut dire qu'il reste au moins un bout de chat en vie !
                     if (getRadarGrid()[r][c] != 2) {
                         return false;
                     }
                 }
             }
         }
-        // Si on a tout vérifié et qu'aucun chat n'est indemne, alors toute la flotte est coulée !
+
         return true;
     }
 
-    /* * J'ai supprimé la méthode setupFixFleet() car il y en a plus besoin
-     * pour le joueur humain.
-     * (Astuce : On pourra la remettre plus tard dans une classe "Bot"
-     * si on veut créer un adversaire automatique facile !)
-     */
 }

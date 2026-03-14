@@ -16,7 +16,7 @@ public class MainMenu extends Application {
         );
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 1500, 850);
         stage.setTitle("Bataille Navale des Chats");
         stage.setScene(scene);
         stage.show();

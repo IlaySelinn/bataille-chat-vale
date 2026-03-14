@@ -7,12 +7,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 
 public class MenuController
 {
-   @FXML
-    private HBox gameController;
+//   @FXML
+//    private HBox gameController;
 
 
         /// affichage de me chats
@@ -21,23 +22,24 @@ public class MenuController
         ///if (gameContenier)
 ///    }
 
-    @FXML
-    public void startGame(ActionEvent event) throws Exception {
+        @FXML
+        public void startGame(ActionEvent event) throws Exception {
 
-        System.out.println("Nouvelle partie lancée !");
+            System.out.println("Nouvelle partie lancée !");
 
-        Node button = (Node) event.getSource();
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/school/coda/ilay_luisa/bataillejavale/views/placement.fxml")
+            );
+            Parent placementFxml = loader.load();
 
-        Scene scene = button.getScene();
+            Node button = (Node) event.getSource();
+            Stage stage = (Stage) button.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/school/coda/ilay_luisa/bataillejavale/views/placement.fxml")
-        );
+            Scene scene = new Scene(placementFxml, 1500, 850);
 
-        Parent placementFxml = loader.load();
-
-        scene.setRoot(placementFxml);
-
+            // 4. On applique la nouvelle scène et on l'affiche
+            stage.setScene(scene);
+            stage.show();
+        }
 
     }
-}

@@ -10,26 +10,31 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import school.coda.ilay_luisa.bataillejavale.model.Cat;
+import school.coda.ilay_luisa.bataillejavale.model.CatType;
 import school.coda.ilay_luisa.bataillejavale.model.Game;
 import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 import school.coda.ilay_luisa.bataillejavale.view.BoardView;
+import school.coda.ilay_luisa.bataillejavale.model.Player;
 
 import java.io.IOException;
 
-public class BattleController {
+import static school.coda.ilay_luisa.bataillejavale.model.CatType.*;
 
-    // L'erreur de syntaxe est corrigée ici (point-virgule ajouté)
-    private Image imageTom;
+
+public class BattleController
+{
+    private Image imageTom, imagePufi, imageMistache, imageUkulele, imageGumus;
     private Game game;
 
-    // Le tableau qui mémorise tes tirs (false par défaut)
+    ///  le tableau
     private boolean[][] alreadyShot = new boolean[10][10];
 
     @FXML
-    private BoardView playerGrid;   // La grille avec tes chats
+    private BoardView playerGrid;
 
     @FXML
-    private BoardView radarGrid;    // La grille pour tirer sur l'IA
+    private BoardView radarGrid;
 
     @FXML
     private Label turnLabel;
@@ -38,15 +43,26 @@ public class BattleController {
     private TextArea historyLabel;
 
 
-   /*public void initialize()
+   public void initialize()
     {
-
+        imageTom = loadSafeImage("/image/tom.png");
+        imagePufi = loadSafeImage("/image/pufi.png");
+        imageMistache = loadSafeImage("/image/mistache.png");
+        imageUkulele = loadSafeImage("/image/ukulele.png");
+        imageGumus = loadSafeImage("/image/gumus.png");
     }
-    */
 
-    /**
-     * Méthode appelée par PlacementController pour transmettre le plateau.
-     */
+    private Image loadSafeImage(String path)
+    {
+        java.net.URL url = getClass().getResource(path);
+        if (url == null)
+        {
+            System.err.println("Pas de photo: " + path);
+            return null;
+        }
+        return new Image(url.toString(), 45, 45, true, true);
+    }
+
     public void initData(Game initializedGame) {
         this.game = initializedGame;
 
@@ -60,13 +76,34 @@ public class BattleController {
         historyLabel.setText("La bataille commence ! Détectez la flotte féline ennemie sur le radar.");
     }
 
-    private void setupPlayerGrid() {
-        // On parcourt la grille du joueur pour afficher ses chats
-        for (int r = 0; r < 10; r++) {
-            for (int c = 0; c < 10; c++) {
-                // Si la case n'est pas vide, c'est qu'il y a un chat
-                if (game.getPlayer().getBoard().getOceanGrid()[r][c] != null) {
-                    playerGrid.markHit(r, c, Color.LIGHTGRAY);
+    private void setupPlayerGrid()
+    {
+               for (int r = 0; r < 10; r++)
+               {
+                    for (int c = 0; c < 10; c++)
+                    {
+                        Cat cat = game.getPlayer().getBoard().getOceanGrid()[r][c];
+
+
+                        if (cat!= null)
+                {
+                    Image toDraw = null;
+                    switch (cat.getType())
+                    {
+                        case TOM: toDraw =  imageTom; break;
+                        case PUFI: toDraw = imagePufi; break;
+                        case MISTACHE: toDraw = imageMistache; break;
+                        case UKULELE: toDraw = imageUkulele; break;
+                        case GÜMÜŞ: toDraw = imageGumus; break;
+                    }
+                    if (toDraw != null)
+                    {
+                        playerGrid.drawCatImage(r,c, toDraw);
+                    }
+                    else
+                    {
+                        playerGrid.markHit(r,c,Color.LIGHTGRAY);
+                    }
                 }
             }
         }
@@ -85,16 +122,15 @@ public class BattleController {
         // Vérifier que le clic est bien dans la zone de l'océan
         if (r >= 0 && r < 10 && c >= 0 && c < 10) {
 
-            // --- NOUVEAUTÉ : On vérifie si tu as déjà tiré ici ! ---
             if (alreadyShot[r][c]) {
-                historyLabel.appendText("\nCapitaine, on a déjà tiré ici ! Choisissez une autre cible.");
-                return; // On arrête tout, l'IA ne riposte pas et tu peux rejouer.
+                historyLabel.appendText("\n Miaouuu, on a déjà tiré ici ! Choisissez une autre cible.");
+                return;
             }
 
             // Si c'est un nouveau tir, on le mémorise pour la prochaine fois
             alreadyShot[r][c] = true;
 
-            // --- 1. ATTAQUE DU JOUEUR ---
+            // ATTAQUE DU JOUEUR
             AttackResult playerResult = game.attack(r, c);
 
             // On dessine sur le radar (Rouge = Touché, Bleu = Dans l'eau)
@@ -108,7 +144,6 @@ public class BattleController {
             String colLetter = String.valueOf((char) ('A' + c));
             historyLabel.appendText("\n\nTour " + game.getTurnNumber() + " - VOUS : Tir en " + colLetter + (r + 1) + " -> " + playerResult.message());
 
-            // --- 2. RIPOSTE DE L'IA ---
             AttackResult iaResult = game.iaTurn();
             historyLabel.appendText("\nTour " + game.getTurnNumber() + " - IA : " + iaResult.message());
 
@@ -118,25 +153,19 @@ public class BattleController {
             // On met à jour le numéro du tour
             updateTurnLabel();
 
-            // --- 3. VÉRIFICATION DE LA FIN DE PARTIE ---
             checkEndGame();
         }
     }
 
     private void updatePlayerGridAfterIA() {
-        /*
-         * Puisque iaTurn() ne nous renvoie pas les coordonnées exactes du tir,
-         * on scanne la grille Radar du joueur. C'est elle qui enregistre où l'IA a frappé.
-         * Hypothèse logique : 1 = plouf (eau), 2 = touché.
-         * (Modifie les chiffres 1 et 2 si tu as codé ton tableau d'entiers différemment dans Board.java)
-         */
+
         int[][] receivedShots = game.getPlayer().getBoard().getRadarGrid();
 
         for (int r = 0; r < 10; r++) {
             for (int c = 0; c < 10; c++) {
                 if (receivedShots[r][c] == 1) { // L'IA a tiré dans l'eau
                     playerGrid.markHit(r, c, Color.LIGHTBLUE);
-                } else if (receivedShots[r][c] == 2) { // L'IA a touché un de tes chats
+                } else if (receivedShots[r][c] == 2) { // L'IA a touché un des chats
                     playerGrid.markHit(r, c, Color.RED);
                 }
             }
@@ -146,19 +175,17 @@ public class BattleController {
     private void updateTurnLabel() {
         // Le TurnManager gère les tours, on l'affiche simplement
         turnLabel.setText("Tour n°" + (game.getTurnNumber() / 2 + 1));
-        // Note : Je divise par 2 car ton Game ajoute +1 pour le joueur et +1 pour l'IA.
+
     }
 
     private void checkEndGame() {
-        // On vérifie si tu as gagné (l'IA n'a plus de bateaux)
         if (game.getIA().getBoard().areAllCatsSunk()) {
             endGame(true, "Inconnu");
             return;
         }
 
-        // On vérifie si l'IA a gagné (Tu n'as plus de bateaux)
+        // On vérifie si l'IA a gagné
         if (game.getPlayer().getBoard().areAllCatsSunk()) {
-            // Remplace par la vraie logique de ton modèle si tu as un moyen de récupérer le dernier chat
             String lastCat = "Dernier Chat";
             endGame(false, lastCat);
         }
@@ -175,7 +202,7 @@ public class BattleController {
 
             // On change la scène
             Stage stage = (Stage) radarGrid.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(root, 1500, 850));
             stage.show();
 
         } catch (IOException e) {

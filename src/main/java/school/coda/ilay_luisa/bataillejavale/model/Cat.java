@@ -20,15 +20,10 @@ public class Cat
         this.hits = 0;
         this.isAsleep = false;
     }
-    public CatType getName() {
+    public CatType getType() {
         return name;
     }
-    public int getSize() {
-        return size;
-    }
-    public int getHits() {
-        return hits;
-    }
+
     public boolean isAsleep() {
         return isAsleep;
     }

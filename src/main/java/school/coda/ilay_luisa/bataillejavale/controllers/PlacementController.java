@@ -24,7 +24,7 @@ import java.util.Random;
 
 public class PlacementController {
 
-    /// Créer l'objet de chats
+
     private ImageView tomView, pufiView, mistacheView, ukuleleView, gumusView;
 
     @FXML
@@ -244,7 +244,7 @@ public class PlacementController {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
 
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 1500, 850);
             stage.setScene(scene);
             stage.show();
 

@@ -13,9 +13,7 @@ public class TurnManager {
         this.currentPlayer = player1;
         this.opponent = player2;
     }
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
+
     public Player getOpponent() {
         return opponent;
     }

@@ -1,6 +1,6 @@
-package school.coda.ilay_luisa.bataillejavale.model;
+package school.coda.ilay_luisa.bataillejavale.test;
 
-import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
+import school.coda.ilay_luisa.bataillejavale.model.Board;
 
 public class BoardTestMain {
 

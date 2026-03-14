@@ -15,9 +15,9 @@ public record AttackResult (
             return (sunkCat.name() + " est coulé! (Zzz...)");
         }
         if (hits) {
-            return (" un chat a miolé  (Toujours vivant!!)");
+            return (" un chat a miaulé  (Toujours vivant!!)");
         }
-        return " personne a été touché";
+        return " personne a été touché essaye encore !! ";
 
         }
 

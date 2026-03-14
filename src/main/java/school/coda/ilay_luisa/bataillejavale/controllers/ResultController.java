@@ -21,11 +21,7 @@ public class ResultController {
     @FXML
     private Label detailLabel;
 
-    /**
-     * Initialise l'écran de fin.
-     * @param isPlayerWinner true si c'est toi qui as gagné, false si c'est l'IA
-     * @param lastCatSunk Le nom du dernier chat coulé (utile surtout pour la défaite)
-     */
+
     public void initData(boolean isPlayerWinner, String lastCatSunk) {
         if (isPlayerWinner) {
             titleLabel.setText("🎉 FÉLICITATIONS ! 🎉");
@@ -48,7 +44,7 @@ public class ResultController {
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root, 1200, 800));
+        stage.setScene(new Scene(root, 1500, 850));
         stage.show();
     }
 }

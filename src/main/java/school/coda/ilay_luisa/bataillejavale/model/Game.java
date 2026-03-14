@@ -3,6 +3,7 @@ package school.coda.ilay_luisa.bataillejavale.model;
 import school.coda.ilay_luisa.bataillejavale.fight.RandomFight;
 import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 import school.coda.ilay_luisa.bataillejavale.rules.TurnManager;
+import school.coda.ilay_luisa.bataillejavale.sound.SoundCat;
 
 public class Game {
 
@@ -24,28 +25,40 @@ public class Game {
 
         AttackResult result = opponent.getBoard().attack(row, col);
 
+        if (result.sunk()) {
+            // Si le chat est coulé (endormi)
+            SoundCat.playSound("src/sound/miaou_aigue.wav");
+        }
+        else if (result.hits()) {
+            // Si le chat est touché (mais pas coulé)
+            SoundCat.playSound("src/sound/miaou.wav");
+        }
+        else {
+            // S'il n'est ni coulé ni touché, c'est raté (Plouf !)
+            SoundCat.playSound("src/sound/ronron.wav");
+        }
+
         turnManager.nextTurn();
 
         return result;
     }
 
     public AttackResult iaTurn() {
-        CoordinatePoints shot;
-        do {
-            shot = iaAI.chooseAttack();
-        } while (player.getBoard().getRadarGrid()[shot.getRow()][shot.getCol()] != 0);
+        AttackResult result = ia.playAITurn(player, iaAI, turnManager);
 
-        AttackResult result = player.getBoard().attack(
-                shot.getRow(),
-                shot.getCol()
-        );
-
-        turnManager.nextTurn();
+        if (result.sunk()) {
+            // Si le chat est coulé (endormi)
+            SoundCat.playSound("src/sound/miaou_aigue.wav");
+        }
+        else if (result.hits()) {
+            // Si le chat est touché (mais pas coulé)
+            SoundCat.playSound("src/sound/miaou.wav");
+        }
+        else {
+            // S'il n'est ni coulé ni touché, c'est raté (Plouf !)
+            SoundCat.playSound("src/sound/ronron.wav");
+        }
         return result;
-    }
-
-    public Player getCurrentPlayer() {
-        return turnManager.getCurrentPlayer();
     }
 
     public int getTurnNumber() {

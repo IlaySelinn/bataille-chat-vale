@@ -5,7 +5,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.image.Image;
-import school.coda.ilay_luisa.bataillejavale.model.Board;
 
 public class BoardView extends Canvas
 {
@@ -30,13 +29,6 @@ public class BoardView extends Canvas
         super(510, 510);
         drawGrid();
     }
-
-    public BoardView(Board playerBoard)
-    {
-        super(510, 510);
-        drawGrid();
-    }
-    // -----------------------------
 
     private void drawGrid()
     {
