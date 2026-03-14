@@ -52,6 +52,14 @@ public final class Board {
         return result;
     }
 
+    public void copyFrom(Board otherBoard) {
+        for (int r = 0; r < 10; r++) {
+            for (int c = 0; c < 10; c++) {
+                this.oceanGrid[r][c] = otherBoard.getOceanGrid()[r][c];
+            }
+        }
+    }
+
     public Cat[][] getOceanGrid() {
         return oceanGrid;
     }

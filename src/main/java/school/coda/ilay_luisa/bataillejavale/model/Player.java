@@ -1,6 +1,7 @@
 package school.coda.ilay_luisa.bataillejavale.model;
 
 import school.coda.ilay_luisa.bataillejavale.fight.RandomFight;
+import school.coda.ilay_luisa.bataillejavale.fight.SmartFight;
 import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 import school.coda.ilay_luisa.bataillejavale.rules.TurnManager;
 
@@ -30,6 +31,16 @@ public class Player {
                 shot.row(),
                 shot.col()
         );
+
+        // ia va savoir quoi faire de son tir
+
+        if (iaAI instanceof SmartFight) {
+            SmartFight smartAI = (SmartFight) iaAI;
+            // Si le chat est touché ou coulé, on enregistre les coordonnées
+            if (result.hits() || result.sunk()) {
+                smartAI.registerHit(shot.row(), shot.col(), result.sunk());
+            }
+        }
 
         // On passe au tour suivant
         turnManager.nextTurn();

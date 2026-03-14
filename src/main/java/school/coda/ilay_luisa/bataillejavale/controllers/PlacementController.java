@@ -46,6 +46,9 @@ public class PlacementController {
     private ComboBox<CatType> catTypeCombo;
 
     @FXML
+    private ComboBox<String> difficultyCombo;
+
+    @FXML
     private Button placeButton;
 
     @FXML
@@ -56,9 +59,11 @@ public class PlacementController {
 
     @FXML
     public void initialize() {
-        game = new Game("Player");
-        playerBoard = game.getPlayer().getBoard();
 
+        playerBoard = new Board();
+
+        difficultyCombo.getItems().addAll("Facile", "Difficile");
+        difficultyCombo.getSelectionModel().selectFirst();
         lineCombo.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
         colCombo.getItems().addAll("A","B","C","D","E","F","G","H","I","J");
         orientationCombo.getItems().addAll("HORIZONTAL","VERTICAL");
@@ -229,7 +234,17 @@ public class PlacementController {
 
     @FXML
     private void startBattle(ActionEvent event) {
-        System.out.println("La bataille commence !");
+
+        int difficulty = 1; // Par défaut
+        if ("Difficile".equals(difficultyCombo.getValue())) {
+            difficulty = 2;
+        }
+
+        game = new Game("Joueur 1", difficulty);
+
+        game.getPlayer().getBoard().copyFrom(playerBoard);
+
+        System.out.println("La bataille commence en mode : " + difficultyCombo.getValue());
 
         // ON PLACE LES CHATS DE L'ORDINATEUR ICI
         placeIACatsRandomly();

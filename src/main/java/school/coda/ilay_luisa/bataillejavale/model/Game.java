@@ -1,6 +1,7 @@
 package school.coda.ilay_luisa.bataillejavale.model;
 
 import school.coda.ilay_luisa.bataillejavale.fight.RandomFight;
+import school.coda.ilay_luisa.bataillejavale.fight.SmartFight;
 import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 import school.coda.ilay_luisa.bataillejavale.rules.TurnManager;
 import school.coda.ilay_luisa.bataillejavale.sound.SoundCat;
@@ -10,13 +11,21 @@ public class Game {
     private final Player player;
     private final Player ia;
 
-    private final RandomFight iaAI = new RandomFight();
+    private final RandomFight iaAI;
     private final TurnManager turnManager;
 
-    public Game(String playerName) {
+
+
+    public Game(String playerName, int difficulty) {
         player = new Player(playerName);
         ia = new Player("IA");
         this.turnManager = new TurnManager(player, ia);
+
+        if (difficulty == 2) {
+            this.iaAI = new SmartFight(); // Niveau 2 : IA Chasseuse
+        } else {
+            this.iaAI = new RandomFight(); // Niveau 1 : IA Hasard
+        }
     }
 
     public AttackResult attack(int row, int col) {

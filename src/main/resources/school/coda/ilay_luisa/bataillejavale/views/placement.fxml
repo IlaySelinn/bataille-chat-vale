@@ -42,6 +42,11 @@
                 <Label text="Chat:"/>
                 <ComboBox fx:id="catTypeCombo" prefWidth="120"/>
 
+                <!-- Type d'IA -->
+
+                <Label text="Difficulté"/>
+                <ComboBox fx:id="difficultyCombo" prefWidth="120"/>
+
                 <!-- Bouton placer -->
                 <Button fx:id="placeButton" text="Placer" onAction="#placeCatFromMenu"/>
             </HBox>
