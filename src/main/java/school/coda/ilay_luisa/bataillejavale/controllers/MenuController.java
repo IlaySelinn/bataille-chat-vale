@@ -38,6 +38,7 @@ public class MenuController
 
             Scene scene = new Scene(placementFxml, 1500, 850);
 
+            // 🚨 Commentaire inutile, le code est suffisamment explicite
             // 4. On applique la nouvelle scène et on l'affiche
             stage.setScene(scene);
             stage.show();

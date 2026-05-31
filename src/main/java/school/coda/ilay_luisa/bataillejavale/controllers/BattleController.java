@@ -69,9 +69,11 @@ public class BattleController
     public void initData(Game initializedGame) {
         this.game = initializedGame;
 
+        // 🚨 Commentaire pourrait être la javadoc de la méthode appelée
         // 1. On dessine la flotte du joueur
         setupPlayerGrid();
 
+        // 🚨 Commentaire pourrait être la javadoc de la méthode appelée
         // 2. On prépare le radar pour écouter les clics de la souris
         setupRadarGrid();
 
@@ -113,6 +115,7 @@ public class BattleController
     }
 
     private void setupRadarGrid() {
+        // 🚨 Commentaire inutile, le code est suffisamment explicite
         // On attache l'événement du clic sur la grille radar
         radarGrid.setOnMouseClicked(this::handleRadarClick);
     }
@@ -130,6 +133,7 @@ public class BattleController
                 return;
             }
 
+            // 🚨 Commentaire inutile, le code est suffisamment explicite
             // Si c'est un nouveau tir, on le mémorise pour la prochaine fois
             alreadyShot[r][c] = true;
 
@@ -150,9 +154,11 @@ public class BattleController
             AttackResult iaResult = game.iaTurn();
             historyLabel.appendText("\nTour " + game.getTurnNumber() + " - IA : " + iaResult.message());
 
+            // 🚨 Commentaire inutile, le code est suffisamment explicite
             // On met à jour la grille du joueur pour voir où l'IA a tiré
             updatePlayerGridAfterIA();
 
+            // 🚨 Commentaire inutile, le code est suffisamment explicite
             // On met à jour le numéro du tour
             updateTurnLabel();
 

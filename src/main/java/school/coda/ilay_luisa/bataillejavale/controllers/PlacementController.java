@@ -247,6 +247,7 @@ public class PlacementController {
 
         System.out.println("La bataille commence en mode : " + difficultyCombo.getValue());
 
+        // 🚨 Commentaire inutile, le code est suffisamment explicite
         // ON PLACE LES CHATS DE L'ORDINATEUR ICI
         placeIACatsRandomly();
 
