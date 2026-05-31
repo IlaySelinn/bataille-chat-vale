@@ -17,10 +17,6 @@ import school.coda.ilay_luisa.bataillejavale.view.BoardView;
 
 import java.io.IOException;
 
-// 🚨 Code mort (jamais utilisé)
-import static school.coda.ilay_luisa.bataillejavale.model.CatType.*;
-
-
 public class BattleController
 {
     private Image imageTom, imagePufi, imageMistache, imageUkulele, imageGumus;
@@ -151,7 +147,6 @@ public class BattleController
 
             updatePlayerGridAfterIA();
 
-            // 🚨 Commentaire inutile, le code est suffisamment explicite
             updateTurnLabel();
 
             checkEndGame();
