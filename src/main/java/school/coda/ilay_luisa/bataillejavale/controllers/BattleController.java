@@ -11,13 +11,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import school.coda.ilay_luisa.bataillejavale.model.Cat;
-// 🚨 Code mort (jamais utilisé)
-import school.coda.ilay_luisa.bataillejavale.model.CatType;
 import school.coda.ilay_luisa.bataillejavale.model.Game;
 import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 import school.coda.ilay_luisa.bataillejavale.view.BoardView;
-// 🚨 Code mort (jamais utilisé)
-import school.coda.ilay_luisa.bataillejavale.model.Player;
 
 import java.io.IOException;
 
@@ -30,7 +26,6 @@ public class BattleController
     private Image imageTom, imagePufi, imageMistache, imageUkulele, imageGumus;
     private Game game;
 
-    ///  le tableau
     private boolean[][] alreadyShot = new boolean[10][10];
 
     @FXML
@@ -154,12 +149,9 @@ public class BattleController
             AttackResult iaResult = game.iaTurn();
             historyLabel.appendText("\nTour " + game.getTurnNumber() + " - IA : " + iaResult.message());
 
-            // 🚨 Commentaire inutile, le code est suffisamment explicite
-            // On met à jour la grille du joueur pour voir où l'IA a tiré
             updatePlayerGridAfterIA();
 
             // 🚨 Commentaire inutile, le code est suffisamment explicite
-            // On met à jour le numéro du tour
             updateTurnLabel();
 
             checkEndGame();

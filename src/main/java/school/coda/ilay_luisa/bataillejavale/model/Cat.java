@@ -24,10 +24,6 @@ public class Cat
         return name;
     }
 
-    public boolean isAsleep() {
-        return isAsleep;
-    }
-
     public AttackResult takeHit() {
         hits++;
         boolean sunk = hits >=size;

@@ -30,12 +30,8 @@ public final class Board {
         // Loop : la logique de row/col
         for (int i = 0; i < type.getSize(); i++) {
             if (isHorizontal) {
-                /// Horizontal
-                // Horizontal
                 oceanGrid[row][col + i] = newCat;
             } else {
-                /// Vertical
-                // Vertical
                 oceanGrid[row + i][col] = newCat;
             }
         }

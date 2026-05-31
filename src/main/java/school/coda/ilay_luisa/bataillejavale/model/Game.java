@@ -15,7 +15,6 @@ public class Game {
     private final TurnManager turnManager;
 
 
-
     public Game(String playerName, int difficulty) {
         player = new Player(playerName);
         ia = new Player("IA");
@@ -37,12 +36,10 @@ public class Game {
         if (result.sunk()) {
             // Si le chat est coulé (endormi)
             SoundCat.sunk();
-        }
-        else if (result.hits()) {
+        } else if (result.hits()) {
             // Si le chat est touché (mais pas coulé)
             SoundCat.hit();
-        }
-        else {
+        } else {
             // S'il n'est ni coulé ni touché, c'est raté (Plouf !)
             SoundCat.sunk();
         }
@@ -58,12 +55,10 @@ public class Game {
         if (result.sunk()) {
             // Si le chat est coulé (endormi)
             SoundCat.sunk();
-        }
-        else if (result.hits()) {
+        } else if (result.hits()) {
             // Si le chat est touché (mais pas coulé)
             SoundCat.hit();
-        }
-        else {
+        } else {
             // S'il n'est ni coulé ni touché, c'est raté (Plouf !)
             SoundCat.missed();
         }

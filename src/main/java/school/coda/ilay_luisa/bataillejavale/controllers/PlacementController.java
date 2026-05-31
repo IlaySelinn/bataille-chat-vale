@@ -1,25 +1,24 @@
 package school.coda.ilay_luisa.bataillejavale.controllers;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
-import school.coda.ilay_luisa.bataillejavale.model.Board;
-import school.coda.ilay_luisa.bataillejavale.model.CatType;
-import school.coda.ilay_luisa.bataillejavale.model.Game;
-import school.coda.ilay_luisa.bataillejavale.view.BoardView;
-import javafx.util.StringConverter;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-import java.io.IOException;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import school.coda.ilay_luisa.bataillejavale.model.Board;
+import school.coda.ilay_luisa.bataillejavale.model.CatType;
+import school.coda.ilay_luisa.bataillejavale.model.Game;
+import school.coda.ilay_luisa.bataillejavale.view.BoardView;
 
+import java.io.IOException;
 import java.util.Random;
 
 public class PlacementController {
@@ -30,9 +29,6 @@ public class PlacementController {
     @FXML
     private BoardView boardView;
 
-    // 🚨 Code mort (jamais utilisé)
-    @FXML
-    private ToggleButton toggleOrientationButton;
 
     @FXML
     private ComboBox<Integer> lineCombo;
