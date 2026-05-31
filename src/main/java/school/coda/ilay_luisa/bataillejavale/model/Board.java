@@ -10,6 +10,7 @@ public final class Board {
     private final int[][] radarGrid = new int[10][10];
 
     public Board() {
+        // 🤖🧹 Nettoyez derrière vos IA svp
         // MODIFICATION ICI : On a retiré l'appel à setupFixFleet()
         // Le plateau est maintenant 100% vide au démarrage,
         // prêt à recevoir les chats depuis le placement.
