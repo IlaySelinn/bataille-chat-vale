@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 public class MenuController
 {
+    // 🚨 Code commenté
 //   @FXML
 //    private HBox gameController;
 

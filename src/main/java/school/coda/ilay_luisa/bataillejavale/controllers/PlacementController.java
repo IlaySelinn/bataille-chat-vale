@@ -30,6 +30,7 @@ public class PlacementController {
     @FXML
     private BoardView boardView;
 
+    // 🚨 Code mort (jamais utilisé)
     @FXML
     private ToggleButton toggleOrientationButton;
 

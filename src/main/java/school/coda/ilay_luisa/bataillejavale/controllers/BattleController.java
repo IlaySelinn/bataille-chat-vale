@@ -11,14 +11,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import school.coda.ilay_luisa.bataillejavale.model.Cat;
+// 🚨 Code mort (jamais utilisé)
 import school.coda.ilay_luisa.bataillejavale.model.CatType;
 import school.coda.ilay_luisa.bataillejavale.model.Game;
 import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 import school.coda.ilay_luisa.bataillejavale.view.BoardView;
+// 🚨 Code mort (jamais utilisé)
 import school.coda.ilay_luisa.bataillejavale.model.Player;
 
 import java.io.IOException;
 
+// 🚨 Code mort (jamais utilisé)
 import static school.coda.ilay_luisa.bataillejavale.model.CatType.*;
 
 
