@@ -17,6 +17,7 @@ public final class Board {
 
     /// L'endroit où on met les chats sur le board
     public void placeCat(CatType type, int row, int col, boolean isHorizontal) {
+        // 🤖🧹 Nettoyez derrière vos IA svp
         // La logique est nickel ici, elle va parfaitement marcher avec ton contrôleur
         int catSize = type.getSize();
 
