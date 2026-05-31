@@ -8,8 +8,19 @@ import java.util.Optional;
 
 public class SoundCat {
 
+    public static void missed() {
+        playSound("ronron.wav");
+    }
 
-    public static void playSound(String soundResourcePath) {
+    public static void hit() {
+        playSound("miaou.wav");
+    }
+
+    public static void sunk() {
+        playSound("miaou_aigue.wav");
+    }
+
+    private static void playSound(String soundResourcePath) {
         try {
             // 🚨 Les sons ne sont pas disponibles dans le jar
             // Pour qu'ils le soient, ils doivent se trouver dans les resources
@@ -36,5 +47,4 @@ public class SoundCat {
         }
         return Optional.of(url);
     }
-
 }

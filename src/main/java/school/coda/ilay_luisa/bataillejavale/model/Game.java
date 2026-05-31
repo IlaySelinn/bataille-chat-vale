@@ -36,15 +36,15 @@ public class Game {
 
         if (result.sunk()) {
             // Si le chat est coulé (endormi)
-            SoundCat.playSound("miaou_aigue.wav");
+            SoundCat.sunk();
         }
         else if (result.hits()) {
             // Si le chat est touché (mais pas coulé)
-            SoundCat.playSound("miaou.wav");
+            SoundCat.hit();
         }
         else {
             // S'il n'est ni coulé ni touché, c'est raté (Plouf !)
-            SoundCat.playSound("ronron.wav");
+            SoundCat.sunk();
         }
 
         turnManager.nextTurn();
@@ -57,15 +57,15 @@ public class Game {
 
         if (result.sunk()) {
             // Si le chat est coulé (endormi)
-            SoundCat.playSound("miaou_aigue.wav");
+            SoundCat.sunk();
         }
         else if (result.hits()) {
             // Si le chat est touché (mais pas coulé)
-            SoundCat.playSound("miaou.wav");
+            SoundCat.hit();
         }
         else {
             // S'il n'est ni coulé ni touché, c'est raté (Plouf !)
-            SoundCat.playSound("ronron.wav");
+            SoundCat.missed();
         }
         return result;
     }
