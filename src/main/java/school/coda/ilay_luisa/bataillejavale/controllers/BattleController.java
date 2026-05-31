@@ -17,8 +17,7 @@ import school.coda.ilay_luisa.bataillejavale.view.BoardView;
 
 import java.io.IOException;
 
-public class BattleController
-{
+public class BattleController {
     private Image imageTom, imagePufi, imageMistache, imageUkulele, imageGumus;
     private Game game;
 
