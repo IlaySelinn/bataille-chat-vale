@@ -23,31 +23,38 @@ public final class Board {
         int catSize = type.getSize();
 
         /// Créer l'objet "cat"
+        // Créer l'objet "cat"
         Cat newCat = new Cat(type, catSize);
 
         /// Loop : la logique de row/col
+        // Loop : la logique de row/col
         for (int i = 0; i < type.getSize(); i++) {
             if (isHorizontal) {
                 /// Horizontal
+                // Horizontal
                 oceanGrid[row][col + i] = newCat;
             } else {
                 /// Vertical
+                // Vertical
                 oceanGrid[row + i][col] = newCat;
             }
         }
     }
 
     public AttackResult attack(int row, int col) {
-        /// Contrôler s'il y a un chat
+        // 🚨 Pourrait être encapsulé dans une méthode
+        // Ex. Optional<Cat> target = targetCatInOcean(row, col);
+
+        // Contrôler s'il y a un chat
         Cat target = oceanGrid[row][col];
 
-        /// S'il n'y a pas de chat "Raté"
+        // S'il n'y a pas de chat "Raté"
         if (target == null) {
             radarGrid[row][col] = 1; // 1 = Tir dans l'eau
             return new AttackResult(false, false, null);
         }
 
-        /// S'il y a un chat "Touché!"
+        // S'il y a un chat "Touché!"
         AttackResult result = target.takeHit();
         radarGrid[row][col] = 2; // 2 = Touché
 
