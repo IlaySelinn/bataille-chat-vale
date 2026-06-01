@@ -49,6 +49,9 @@ public final class Board {
         return result;
     }
 
+    // 🚨 Nommage n'est pas tout à fait approprié
+    // Proposition  de nommage plus adapté :
+    // void fillOceanFrom(Board otherBoard)
     public void copyFrom(Board otherBoard) {
         for (int r = 0; r < 10; r++) {
             // ⚠️ copie de tableau manuelle
