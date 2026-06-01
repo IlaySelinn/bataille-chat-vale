@@ -36,8 +36,7 @@ public class BattleController {
     private TextArea historyLabel;
 
 
-   public void initialize()
-    {
+    public void initialize() {
         imageTom = loadSafeImage("/image/tom.png");
         imagePufi = loadSafeImage("/image/pufi.png");
         imageMistache = loadSafeImage("/image/mistache.png");
@@ -45,11 +44,9 @@ public class BattleController {
         imageGumus = loadSafeImage("/image/gumus.png");
     }
 
-    private Image loadSafeImage(String path)
-    {
+    private Image loadSafeImage(String path) {
         java.net.URL url = getClass().getResource(path);
-        if (url == null)
-        {
+        if (url == null) {
             System.err.println("Pas de photo: " + path);
             return null;
         }
@@ -71,13 +68,10 @@ public class BattleController {
         historyLabel.setText("La bataille commence ! Détectez la flotte féline ennemie sur le radar.");
     }
 
-    private void setupPlayerGrid()
-    {
-               for (int r = 0; r < 10; r++)
-               {
-                    for (int c = 0; c < 10; c++)
-                    {
-                        Cat cat = game.getPlayer().getBoard().getOceanGrid()[r][c];
+    private void setupPlayerGrid() {
+        for (int r = 0; r < 10; r++) {
+            for (int c = 0; c < 10; c++) {
+                Cat cat = game.getPlayer().getBoard().getOceanGrid()[r][c];
 
 
                 if (cat != null) {
