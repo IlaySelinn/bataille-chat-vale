@@ -120,6 +120,11 @@ public class PlacementController {
         }
     }
 
+    // ⚠️Utiliser les commentaires de javadoc : /// ou /** */ pour documenter les méthodes
+    // 🚨 Commentaire générique n'apporte pas d'info utile.
+    // Le nom de cette méthode n'est pas suffisant pour comprendre son comportement
+    // Expliquer un peu plus :
+    // ex. ce qui se passe quand le placement est correct et sinon
     //  LOGIQUE COMMUNE DE PLACEMENT
     private void attemptToPlaceCat(int row, int col) {
         CatType cat = catTypeCombo.getValue();
