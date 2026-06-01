@@ -180,6 +180,7 @@ public class PlacementController {
 
     // La méthode qui affiche les photos de chats sur l'écran
     private void markCatOnGrid(CatType cat, int row, int col, boolean horizontal) {
+        // 👍 Utilisation pertinente du switch expression avec enum
         ImageView selectedView = switch (cat) {
             case TOM -> tomView;
             case PUFI -> pufiView;
