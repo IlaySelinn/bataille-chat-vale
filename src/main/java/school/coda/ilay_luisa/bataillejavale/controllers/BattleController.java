@@ -80,24 +80,18 @@ public class BattleController {
                         Cat cat = game.getPlayer().getBoard().getOceanGrid()[r][c];
 
 
-                        if (cat!= null)
-                {
-                    Image toDraw = null;
-                    switch (cat.getType())
-                    {
-                        case TOM: toDraw =  imageTom; break;
-                        case PUFI: toDraw = imagePufi; break;
-                        case MISTACHE: toDraw = imageMistache; break;
-                        case UKULELE: toDraw = imageUkulele; break;
-                        case GÜMÜŞ: toDraw = imageGumus; break;
-                    }
-                    if (toDraw != null)
-                    {
-                        playerGrid.drawCatImage(r,c, toDraw);
-                    }
-                    else
-                    {
-                        playerGrid.markHit(r,c,Color.LIGHTGRAY);
+                if (cat != null) {
+                    Image toDraw = switch (cat.getType()) {
+                        case TOM -> imageTom;
+                        case PUFI -> imagePufi;
+                        case MISTACHE -> imageMistache;
+                        case UKULELE -> imageUkulele;
+                        case GÜMÜŞ -> imageGumus;
+                    };
+                    if (toDraw != null) {
+                        playerGrid.drawCatImage(r, c, toDraw);
+                    } else {
+                        playerGrid.markHit(r, c, Color.LIGHTGRAY);
                     }
                 }
             }
