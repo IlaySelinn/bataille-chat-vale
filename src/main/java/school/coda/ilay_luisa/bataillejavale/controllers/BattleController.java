@@ -56,18 +56,16 @@ public class BattleController {
     public void initData(Game initializedGame) {
         this.game = initializedGame;
 
-        // 🚨 Commentaire pourrait être la javadoc de la méthode appelée
-        // 1. On dessine la flotte du joueur
         setupPlayerGrid();
-
-        // 🚨 Commentaire pourrait être la javadoc de la méthode appelée
-        // 2. On prépare le radar pour écouter les clics de la souris
         setupRadarGrid();
-
         updateTurnLabel();
+
         battleHistory.announceBattleStart();
     }
 
+    /**
+     * Draws initial player fleet to be placed
+     */
     private void setupPlayerGrid() {
         for (int r = 0; r < 10; r++) {
             for (int c = 0; c < 10; c++) {
@@ -92,9 +90,10 @@ public class BattleController {
         }
     }
 
+    /**
+     * Setup event handling on radar grid
+     */
     private void setupRadarGrid() {
-        // 🚨 Commentaire inutile, le code est suffisamment explicite
-        // On attache l'événement du clic sur la grille radar
         radarGrid.setOnMouseClicked(this::handleRadarClick);
     }
 
