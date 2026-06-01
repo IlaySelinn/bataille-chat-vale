@@ -33,6 +33,6 @@ public class Cat
         }
 
              return new AttackResult(true, sunk, name);
-        /// si le chat est déjà endormi, on passe cette étape
+        // si le chat est déjà endormi, on passe cette étape
     }
 }

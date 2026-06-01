@@ -9,7 +9,7 @@ public record AttackResult (
 
     public String message()
     {
-        /// si le chat est déjà endormie, on passe cette étape
+        // si le chat est déjà endormie, on passe cette étape
         if (sunk)
         {
             return (sunkCat.name() + " est coulé! (Zzz...)");
