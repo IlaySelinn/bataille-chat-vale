@@ -100,40 +100,36 @@ public class BattleController {
 
     private void handleRadarClick(MouseEvent event) {
         // Transformer les coordonnées (X,Y) de la souris en ligne/colonne (0 à 9)
-        int r = radarGrid.getRow(event.getY());
-        int c = radarGrid.getCol(event.getX());
+        int row = radarGrid.getRow(event.getY());
+        int col = radarGrid.getCol(event.getX());
 
         // Vérifier que le clic est bien dans la zone de l'océan
-        if (r >= 0 && r < 10 && c >= 0 && c < 10) {
+        if (row >= 0 && row < 10 && col >= 0 && col < 10) {
 
-            if (alreadyShot[r][c]) {
+            if (alreadyShot[row][col]) {
                 battleHistory.blankLine();
                 battleHistory.logPlayerMiss();
                 return;
             }
 
             // 🚨 Commentaire inutile, le code est suffisamment explicite
-            // Si c'est un nouveau tir, on le mémorise pour la prochaine fois
-            alreadyShot[r][c] = true;
+            // Si col'est un nouveau tir, on le mémorise pour la prochaine fois
+            alreadyShot[row][col] = true;
 
             // ATTAQUE DU JOUEUR
-            AttackResult playerResult = game.attack(r, c);
+            AttackResult playerResult = game.attack(row, col);
 
             // On dessine sur le radar (Rouge = Touché, Bleu = Dans l'eau)
             if (playerResult.isHit()) {
-                radarGrid.markHit(r, c, Color.RED);
+                radarGrid.markHit(row, col, Color.RED);
             } else {
-                radarGrid.markHit(r, c, Color.LIGHTBLUE);
+                radarGrid.markHit(row, col, Color.LIGHTBLUE);
             }
 
-            // 🚨 Pourrait être encapsulé dans une méthode dédiée
-            // Mettre à jour l'historique
-            String colLetter = String.valueOf((char) ('A' + c));
             battleHistory.blankLine();
             battleHistory.blankLine();
             int turnNumber = game.getTurnNumber();
-            int rowNumber = r + 1;
-            battleHistory.logPlayerShot(playerResult, turnNumber, colLetter, rowNumber);
+            battleHistory.logPlayerShot(playerResult, turnNumber, col, row);
 
             AttackResult iaResult = game.iaTurn();
             battleHistory.blankLine();

@@ -4,6 +4,7 @@ module school.coda.ilay_luisa.bataillejavale {
 
     requires com.almasb.fxgl.all;
     requires java.desktop;
+    requires annotations;
 
     exports school.coda.ilay_luisa.bataillejavale.view;
     exports school.coda.ilay_luisa.bataillejavale.rules;

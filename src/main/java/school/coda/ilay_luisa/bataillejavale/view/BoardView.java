@@ -85,6 +85,7 @@ public class BoardView extends Canvas
 
         gc.fillRect(x, y, cellSize, cellSize);
     }
+
     /// Pour affichage des chats
     public void drawCatImage(int row, int col, Image catImage)
     {
@@ -110,4 +111,5 @@ public class BoardView extends Canvas
             gc.fillRect(x, y, cellSize, cellSize);
         }
     }
+
 }
