@@ -2,6 +2,8 @@ package school.coda.ilay_luisa.bataillejavale.model;
 
 import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 
+// 🚨 Explication manquante : c'est quoi le board ? A quoi ça sert ?
+
 /// Cette classe gère le board
 public final class Board {
     /// Grille océan : celle où nos chats se retrouvent
