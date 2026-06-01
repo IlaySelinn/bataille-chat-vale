@@ -59,6 +59,8 @@ public final class Board {
 
     public void copyFrom(Board otherBoard) {
         for (int r = 0; r < 10; r++) {
+            // ⚠️ copie de tableau manuelle
+            // Suivre le refactoring automatique de IntelliJ
             for (int c = 0; c < 10; c++) {
                 this.oceanGrid[r][c] = otherBoard.getOceanGrid()[r][c];
             }
