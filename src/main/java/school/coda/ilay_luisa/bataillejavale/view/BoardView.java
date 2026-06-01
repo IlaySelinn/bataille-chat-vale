@@ -34,11 +34,11 @@ public class BoardView extends Canvas
     {
         GraphicsContext gc = this.getGraphicsContext2D();
 
-        /// Fond blanc pour les étiquettes (A-J, 1-10)
+        // Fond blanc pour les étiquettes (A-J, 1-10)
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, getWidth(), getHeight());
 
-        /// Dessiner les lettres (A-J)
+        // Dessiner les lettres (A-J)
         gc.setFill(Color.BLACK);
         gc.setFont(new Font("Arial", 16));
         String[] lettrers = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
@@ -55,20 +55,20 @@ public class BoardView extends Canvas
             gc.fillText(String.valueOf(i + 1), 5, yPos);
         }
 
-        /// Couleur de l'océan (Commence après l'offset)
+        // Couleur de l'océan (Commence après l'offset)
         gc.setFill(Color.DODGERBLUE);
         gc.fillRect(offset, offset, getWidth() - offset, getHeight() - offset);
 
-        /// Couleur des grilles
+        // Couleur des grilles
         gc.setStroke(Color.WHITE);
         gc.setLineWidth(1);
 
         for (int i = 0; i <= cellNumber; i++)
         {
             double pos = (cellSize * i) + i + offset;
-            /// lignes verticales
+            // lignes verticales
             gc.strokeLine(pos, offset, pos, getHeight());
-            /// lignes horizontales
+            // lignes horizontales
             gc.strokeLine(offset, pos, getWidth(), pos);
         }
     }
