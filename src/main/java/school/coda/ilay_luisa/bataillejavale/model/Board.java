@@ -77,12 +77,12 @@ public final class Board {
 
     public boolean areAllCatsSunk() {
 
-        for (int r = 0; r < 10; r++) {
-            for (int c = 0; c < 10; c++) {
+        for (int row = 0; row < 10; row++) {
+            for (int col = 0; col < 10; col++) {
 
-                if (getOceanGrid()[r][c] != null) {
+                if (getOceanGrid()[row][col] != null) {
 
-                    if (getRadarGrid()[r][c] != 2) {
+                    if (getRadarGrid()[row][col] != 2) {
                         return false;
                     }
                 }
