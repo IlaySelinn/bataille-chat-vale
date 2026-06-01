@@ -66,7 +66,7 @@ public class PlacementController {
         orientationCombo.getItems().addAll("HORIZONTAL", "VERTICAL");
         catTypeCombo.getItems().addAll(CatType.TOM, CatType.PUFI, CatType.MISTACHE, CatType.UKULELE, CatType.GÜMÜŞ);
 
-        catTypeCombo.setConverter(new StringConverter<CatType>() {
+        catTypeCombo.setConverter(new StringConverter<>() {
             @Override
             public String toString(CatType cat) {
                 if (cat == null) return "";
