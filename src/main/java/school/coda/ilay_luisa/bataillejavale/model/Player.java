@@ -47,4 +47,8 @@ public class Player {
 
         return result;
     }
+
+    boolean hasLost() {
+        return board.areAllCatsSunk();
+    }
 }

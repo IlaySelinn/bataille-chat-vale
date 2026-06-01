@@ -76,4 +76,12 @@ public class Game {
     public Player getIA() {
         return ia;
     }
+
+    public boolean hasIaLost() {
+        return ia.hasLost();
+    }
+
+    public boolean hasPlayerLost() {
+        return player.hasLost();
+    }
 }

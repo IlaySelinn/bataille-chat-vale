@@ -169,18 +169,19 @@ public class BattleController {
 
     private void updateTurnLabel() {
         // Le TurnManager gère les tours, on l'affiche simplement
+        // ⚠️ Encapsulation : Est-ce que  game.getTurnNumber() pourrait retourner directement la bonne valeur sans avoir à / 2 + 1 ?
         turnLabel.setText("Tour n°" + (game.getTurnNumber() / 2 + 1));
 
     }
 
     private void checkEndGame() {
-        if (game.getIA().getBoard().areAllCatsSunk()) {
+        if (game.hasIaLost()) {
             endGame(true, "Inconnu");
             return;
         }
 
         // On vérifie si l'IA a gagné
-        if (game.getPlayer().getBoard().areAllCatsSunk()) {
+        if (game.hasPlayerLost()) {
             String lastCat = "Dernier Chat";
             endGame(false, lastCat);
         }

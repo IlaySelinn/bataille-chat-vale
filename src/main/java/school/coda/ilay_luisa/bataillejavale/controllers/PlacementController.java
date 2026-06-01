@@ -154,6 +154,7 @@ public class PlacementController {
         }
     }
 
+    // 🚨 Cette méthode pourrait être dans Board
     // La méthode vérifie n'importe quel plateau (Joueur ou IA)
     private boolean canPlaceCat(Board board, CatType cat, int row, int col, boolean horizontal)
     {
@@ -209,6 +210,8 @@ public class PlacementController {
     // Méthode pour placer les chats de l'IA au hasard
     private void placeIACatsRandomly() {
         Board iaBoard = game.getIA().getBoard();
+        // 🚨 Il est préférable d'instancier le Random() une seule fois dans le classe
+        // Pour améliorer les performances
         Random random = new Random();
 
         for (CatType cat : CatType.values()) {
@@ -247,6 +250,9 @@ public class PlacementController {
         // ON PLACE LES CHATS DE L'ORDINATEUR ICI
         placeIACatsRandomly();
 
+        // 🚨 la séquence qui suit pourrait être encapsulée dans une méthode
+        // indiquant qu'on passe à l'écran de bataille.
+        // Ex. switchToBattleView(event);
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/school/coda/ilay_luisa/bataillejavale/views/battle.fxml"));
             Parent root = loader.load();
