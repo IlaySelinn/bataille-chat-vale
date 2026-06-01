@@ -219,6 +219,7 @@ public class PlacementController {
         Random random = new Random();
 
         for (CatType cat : CatType.values()) {
+            // 👍 bon nommage de variable
             boolean isPlaced = false;
 
             while (!isPlaced) {
