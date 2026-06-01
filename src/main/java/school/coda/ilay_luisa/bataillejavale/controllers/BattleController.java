@@ -137,11 +137,14 @@ public class BattleController {
                 radarGrid.markHit(r, c, Color.LIGHTBLUE);
             }
 
+            // 🚨 Pourrait être encapsulé dans une méthode dédiée
             // Mettre à jour l'historique
             String colLetter = String.valueOf((char) ('A' + c));
+            // 🚨 Pourrait être encapsulé dans une méthode dédiée
             historyLabel.appendText("\n\nTour " + game.getTurnNumber() + " - VOUS : Tir en " + colLetter + (r + 1) + " -> " + playerResult.message());
 
             AttackResult iaResult = game.iaTurn();
+            // 🚨 Pourrait être encapsulé dans une méthode dédiée
             historyLabel.appendText("\nTour " + game.getTurnNumber() + " - IA : " + iaResult.message());
 
             updatePlayerGridAfterIA();
