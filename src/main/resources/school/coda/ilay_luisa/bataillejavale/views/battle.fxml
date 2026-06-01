@@ -5,6 +5,7 @@
 <?import javafx.geometry.*?>
 <?import school.coda.ilay_luisa.bataillejavale.view.BoardView?>
 
+<?import school.coda.ilay_luisa.bataillejavale.view.BattleHistory?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="school.coda.ilay_luisa.bataillejavale.controllers.BattleController"
             prefWidth="2000" prefHeight="1000">
@@ -41,7 +42,7 @@
                 <Insets top="20" bottom="20" left="50" right="50"/>
             </padding>
             <Label text="Historique des coups" style="-fx-font-weight: bold;"/>
-            <TextArea fx:id="historyLabel" prefHeight="150" editable="false" wrapText="true"/>
+            <BattleHistory fx:id="battleHistory" prefHeight="150" editable="false" wrapText="true"/>
         </VBox>
     </bottom>
 

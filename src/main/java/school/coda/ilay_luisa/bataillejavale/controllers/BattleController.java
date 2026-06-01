@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -14,6 +13,7 @@ import school.coda.ilay_luisa.bataillejavale.model.Cat;
 import school.coda.ilay_luisa.bataillejavale.model.Game;
 import school.coda.ilay_luisa.bataillejavale.rules.AttackResult;
 import school.coda.ilay_luisa.bataillejavale.view.BoardView;
+import school.coda.ilay_luisa.bataillejavale.view.BattleHistory;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class BattleController {
     private Label turnLabel;
 
     @FXML
-    private TextArea historyLabel;
+    private BattleHistory battleHistory;
 
 
     public void initialize() {
@@ -65,7 +65,7 @@ public class BattleController {
         setupRadarGrid();
 
         updateTurnLabel();
-        historyLabel.setText("La bataille commence ! Détectez la flotte féline ennemie sur le radar.");
+        battleHistory.announceBattleStart();
     }
 
     private void setupPlayerGrid() {
@@ -107,7 +107,8 @@ public class BattleController {
         if (r >= 0 && r < 10 && c >= 0 && c < 10) {
 
             if (alreadyShot[r][c]) {
-                historyLabel.appendText("\n Miaouuu, on a déjà tiré ici ! Choisissez une autre cible.");
+                battleHistory.blankLine();
+                battleHistory.logPlayerMiss();
                 return;
             }
 
@@ -128,12 +129,15 @@ public class BattleController {
             // 🚨 Pourrait être encapsulé dans une méthode dédiée
             // Mettre à jour l'historique
             String colLetter = String.valueOf((char) ('A' + c));
-            // 🚨 Pourrait être encapsulé dans une méthode dédiée
-            historyLabel.appendText("\n\nTour " + game.getTurnNumber() + " - VOUS : Tir en " + colLetter + (r + 1) + " -> " + playerResult.message());
+            battleHistory.blankLine();
+            battleHistory.blankLine();
+            int turnNumber = game.getTurnNumber();
+            int rowNumber = r + 1;
+            battleHistory.logPlayerShot(playerResult, turnNumber, colLetter, rowNumber);
 
             AttackResult iaResult = game.iaTurn();
-            // 🚨 Pourrait être encapsulé dans une méthode dédiée
-            historyLabel.appendText("\nTour " + game.getTurnNumber() + " - IA : " + iaResult.message());
+            battleHistory.blankLine();
+            battleHistory.logIaShot(iaResult, turnNumber);
 
             updatePlayerGridAfterIA();
 

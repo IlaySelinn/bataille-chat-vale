@@ -22,7 +22,7 @@ public class MainMenu extends Application {
         stage.show();
     }
 
-    static void main() {
+    public static void main(String[] args) {
         launch();
     }
 }
