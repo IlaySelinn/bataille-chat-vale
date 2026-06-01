@@ -61,9 +61,9 @@ public class PlacementController {
 
         difficultyCombo.getItems().addAll("Facile", "Difficile");
         difficultyCombo.getSelectionModel().selectFirst();
-        lineCombo.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
-        colCombo.getItems().addAll("A","B","C","D","E","F","G","H","I","J");
-        orientationCombo.getItems().addAll("HORIZONTAL","VERTICAL");
+        lineCombo.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        colCombo.getItems().addAll("A", "B", "C", "D", "E", "F", "G", "H", "I", "J");
+        orientationCombo.getItems().addAll("HORIZONTAL", "VERTICAL");
         catTypeCombo.getItems().addAll(CatType.TOM, CatType.PUFI, CatType.MISTACHE, CatType.UKULELE, CatType.GÜMÜŞ);
 
         catTypeCombo.setConverter(new StringConverter<CatType>() {
@@ -72,6 +72,7 @@ public class PlacementController {
                 if (cat == null) return "";
                 return cat.name() + " (" + cat.getSize() + " cases)";
             }
+
             @Override
             public CatType fromString(String string) {
                 return null;
@@ -156,17 +157,14 @@ public class PlacementController {
 
     // 🚨 Cette méthode pourrait être dans Board
     // La méthode vérifie n'importe quel plateau (Joueur ou IA)
-    private boolean canPlaceCat(Board board, CatType cat, int row, int col, boolean horizontal)
-    {
+    private boolean canPlaceCat(Board board, CatType cat, int row, int col, boolean horizontal) {
         int size = cat.getSize();
         if (horizontal) {
             if (col + size > 10) return false;
             for (int i = 0; i < size; i++) {
                 if (board.getOceanGrid()[row][col + i] != null) return false;
             }
-        }
-        else
-        {
+        } else {
             if (row + size > 10) return false;
             for (int i = 0; i < size; i++) {
                 if (board.getOceanGrid()[row + i][col] != null) return false;
@@ -269,7 +267,7 @@ public class PlacementController {
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println(" Erreur lors du chargement de la vue de bataille.");
+            System.err.println("Erreur lors du chargement de la vue de bataille.");
         }
     }
 
