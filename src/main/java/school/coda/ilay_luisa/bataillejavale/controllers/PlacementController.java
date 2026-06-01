@@ -110,7 +110,7 @@ public class PlacementController {
     }
 
     // PLACEMENT VIA LE CLIC DE SOURIS SUR LA GRILLE !
-    @FXML
+    @FXML // 💡 @FXML n'est pas nécessaire car la méthode est public
     public void handleBoardViewClick(MouseEvent event) {
         int r = boardView.getRow(event.getY());
         int c = boardView.getCol(event.getX());
