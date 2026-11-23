@@ -11,15 +11,26 @@ class TurnManagerTest {
     @Test
     @DisplayName("Au début de la partie, le compteur de tour doit être à 1")
     void shouldStartAtTurnOne() {
-        // 1. Arrange : on prépare 2 joueurs et le TurnManager
         Player p1 = new Player("Ilay");
         Player p2 = new Player("Luisa");
         TurnManager manager = new TurnManager(p1, p2);
 
-        // 2. Act : on récupère le numéro de tour
         int actualTurn = manager.getTurnNumber();
 
-        // 3. Assert : on vérifie qu'il commence bien à 1
         assertThat(actualTurn).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("nextTurn() doit incrémenter le tour et alterner l'adversaire")
+    void shouldSwitchPlayerAndIncrementTurnOnNextTurn() {
+        Player p1 = new Player("Ilay");
+        Player p2 = new Player("Luisa");
+        TurnManager manager = new TurnManager(p1, p2);
+
+        manager.nextTurn();
+
+        assertThat(manager.getTurnNumber()).isEqualTo(2);
+        assertThat(manager.getOpponent()).isEqualTo(p1);
+    }
+
 }
