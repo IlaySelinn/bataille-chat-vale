@@ -22,18 +22,10 @@ import java.io.IOException;
 
 import static school.coda.ilay_luisa.bataillejavale.model.CatType.*;
 
-<<<<<<< HEAD
-
 public class BattleController
 {
     private Image imageTom, imagePufi, imageMistache, imageUkulele, imageGumus;
     private Game game;
-
-    ///  le tableau
-=======
-    private Image imageTom;
-    private Game game;
->>>>>>> 6bf55ea (test)
     private boolean[][] alreadyShot = new boolean[10][10];
 
     @FXML
@@ -49,12 +41,7 @@ public class BattleController
     private TextArea historyLabel;
 
     @FXML
-
-<<<<<<< HEAD
-   public void initialize()
-=======
-   /* public void initialize()
->>>>>>> 6bf55ea (test)
+    public void initialize()
     {
         imageTom = loadSafeImage("/image/tom.png");
         imagePufi = loadSafeImage("/image/pufi.png");
