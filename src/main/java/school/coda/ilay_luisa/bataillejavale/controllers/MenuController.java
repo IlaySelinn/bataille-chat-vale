@@ -15,6 +15,7 @@ public class MenuController
 //   @FXML
 //    private HBox gameController;
 
+<<<<<<< HEAD
 
         /// affichage de me chats
       ///  drawInitialStade();/// method oluştur!
@@ -24,6 +25,10 @@ public class MenuController
 
         @FXML
         public void startGame(ActionEvent event) throws Exception {
+=======
+    @FXML
+    public void startGame(ActionEvent event) throws Exception {
+>>>>>>> 6bf55ea (test)
 
             System.out.println("Nouvelle partie lancée !");
 
