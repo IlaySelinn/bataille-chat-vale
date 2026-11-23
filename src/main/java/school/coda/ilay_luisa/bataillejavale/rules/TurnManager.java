@@ -28,7 +28,12 @@ public class TurnManager {
         turnNumber++;
     }
     public boolean isGameOver(Player player) {
-        for (Cat[] row : player.getBoard().getOceanGrid()) {
+        Cat[][] oceanGrid = player.getBoard().getOceanGrid();
+        return areAllCatsAsleep(oceanGrid);
+    }
+
+    private boolean areAllCatsAsleep(Cat[][] oceanGrid) {
+        for (Cat[] row : oceanGrid) {
             for (Cat cat : row) {
                 if (cat != null && !cat.isAsleep()) {
                     return false;
