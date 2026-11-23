@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -21,6 +22,7 @@ import java.io.IOException;
 
 import static school.coda.ilay_luisa.bataillejavale.model.CatType.*;
 
+<<<<<<< HEAD
 
 public class BattleController
 {
@@ -28,6 +30,10 @@ public class BattleController
     private Game game;
 
     ///  le tableau
+=======
+    private Image imageTom;
+    private Game game;
+>>>>>>> 6bf55ea (test)
     private boolean[][] alreadyShot = new boolean[10][10];
 
     @FXML
@@ -42,8 +48,13 @@ public class BattleController
     @FXML
     private TextArea historyLabel;
 
+    @FXML
 
+<<<<<<< HEAD
    public void initialize()
+=======
+   /* public void initialize()
+>>>>>>> 6bf55ea (test)
     {
         imageTom = loadSafeImage("/image/tom.png");
         imagePufi = loadSafeImage("/image/pufi.png");
@@ -69,7 +80,7 @@ public class BattleController
         // 1. On dessine la flotte du joueur
         setupPlayerGrid();
 
-        // 2. On prépare le radar pour écouter les clics de la souris
+
         setupRadarGrid();
 
         updateTurnLabel();
@@ -110,16 +121,14 @@ public class BattleController
     }
 
     private void setupRadarGrid() {
-        // On attache l'événement du clic sur la grille radar
+
         radarGrid.setOnMouseClicked(this::handleRadarClick);
     }
 
     private void handleRadarClick(MouseEvent event) {
-        // Transformer les coordonnées (X,Y) de la souris en ligne/colonne (0 à 9)
         int r = radarGrid.getRow(event.getY());
         int c = radarGrid.getCol(event.getX());
 
-        // Vérifier que le clic est bien dans la zone de l'océan
         if (r >= 0 && r < 10 && c >= 0 && c < 10) {
 
             if (alreadyShot[r][c]) {
@@ -207,7 +216,7 @@ public class BattleController
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Erreur lors du chargement de l'écran de fin.");
+            System.err.println("Erreur");
         }
     }
 }
