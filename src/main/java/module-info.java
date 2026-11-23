@@ -12,4 +12,8 @@ module school.coda.ilay_luisa.bataillejavale {
     opens school.coda.ilay_luisa.bataillejavale to javafx.fxml;
     opens school.coda.ilay_luisa.bataillejavale.view to javafx.fxml;
     opens school.coda.ilay_luisa.bataillejavale.controllers to javafx.fxml;
+
+    opens school.coda.ilay_luisa.bataillejavale.rules;
+    opens school.coda.ilay_luisa.bataillejavale.model;
+    opens school.coda.ilay_luisa.bataillejavale.fight;
 }
