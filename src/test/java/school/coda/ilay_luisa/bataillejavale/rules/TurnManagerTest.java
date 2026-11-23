@@ -4,10 +4,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import school.coda.ilay_luisa.bataillejavale.model.Board;
+import school.coda.ilay_luisa.bataillejavale.model.Cat;
 import school.coda.ilay_luisa.bataillejavale.model.CatType;
 import school.coda.ilay_luisa.bataillejavale.model.Player;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class TurnManagerTest {
 
@@ -81,6 +85,21 @@ class TurnManagerTest {
         boolean isGameOver = manager.isGameOver(p1);
 
         assertThat(isGameOver).isFalse();
+    }
+
+    @Test
+    @DisplayName("isGameOver doit fonctionner avec un mock de Player")
+    void shouldCheckGameOverWithMockPlayer() {
+        Player mockPlayer = mock(Player.class);
+        Board mockBoard = mock(Board.class);
+
+        when(mockPlayer.getBoard()).thenReturn(mockBoard);
+        when(mockBoard.getOceanGrid()).thenReturn(new Cat[10][10]);
+        TurnManager manager = new TurnManager(mockPlayer, mock(Player.class));
+
+        boolean isGameOver = manager.isGameOver(mockPlayer);
+
+        assertThat(isGameOver).isTrue();
     }
 
 }
