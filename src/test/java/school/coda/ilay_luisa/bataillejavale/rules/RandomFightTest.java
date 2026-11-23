@@ -25,6 +25,23 @@ class RandomFightTest {
             assertThat(attack.row()).isBetween(0, 9);
             assertThat(attack.col()).isBetween(0, 9);
     }
+
+    @ParameterizedTest(name = "Run {0}: attack must stay within valid board boundaries [0-9]")
+    @ValueSource(ints = {1,2,3,4,5})
+    @DisplayName("chooseAttack should produce within bounds across multiple runs")
+        void chooseAttack_shouldAlwaysStayWithinBounds_AcrossMultipleRuns(int runNumber)
+    {
+        // arrange
+        RandomFight fight = new RandomFight();
+
+        // act
+        CoordinatePoints attack = fight.chooseAttack();
+
+        // assert
+        assertThat(attack.row()).isBetween(0, 9);
+        assertThat(attack.col()).isBetween(0, 9);
+    }
+
 }
 
 //une commit apres chaque test!
