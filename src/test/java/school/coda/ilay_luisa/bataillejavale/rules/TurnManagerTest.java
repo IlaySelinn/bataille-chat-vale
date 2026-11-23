@@ -2,6 +2,8 @@ package school.coda.ilay_luisa.bataillejavale.rules;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import school.coda.ilay_luisa.bataillejavale.model.CatType;
 import school.coda.ilay_luisa.bataillejavale.model.Player;
 
@@ -62,6 +64,23 @@ class TurnManagerTest {
         boolean isGameOver = manager.isGameOver(p1);
 
         assertThat(isGameOver).isTrue();
+    }
+
+    @ParameterizedTest(name = "La partie continue tant qu'un chat est vivant")
+    @CsvSource({
+            "TOM",
+            "MISTACHE",
+            "PUFI"
+    })
+    void shouldNotBeGameOverWhenACatIsAlive(CatType catType) {
+        Player p1 = new Player("Ilay");
+        Player p2 = new Player("Luisa");
+        p1.getBoard().placeCat(catType, 0, 0, true);
+        TurnManager manager = new TurnManager(p1, p2);
+
+        boolean isGameOver = manager.isGameOver(p1);
+
+        assertThat(isGameOver).isFalse();
     }
 
 }
