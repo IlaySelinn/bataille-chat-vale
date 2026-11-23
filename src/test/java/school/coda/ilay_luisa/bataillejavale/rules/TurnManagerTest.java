@@ -45,7 +45,23 @@ class TurnManagerTest {
 
         assertThat(isGameOver).isFalse();
 
+    }
 
+    @Test
+    @DisplayName("isGameOver doit retourner true quand tous les chats sont endormis")
+    void shouldReturnTrueWhenAllCatsAreAsleep() {
+        Player p1 = new Player("Ilay");
+        Player p2 = new Player("Luisa");
+
+        p1.getBoard().placeCat(CatType.MISTACHE, 0, 0, true);
+        p1.getBoard().attack(0, 0);
+        p1.getBoard().attack(0,1);
+        p1.getBoard().attack(0,2);
+
+        TurnManager manager = new TurnManager(p1, p2);
+        boolean isGameOver = manager.isGameOver(p1);
+
+        assertThat(isGameOver).isTrue();
     }
 
 }
