@@ -120,5 +120,7 @@ Le smell n°2 car il empêche de tester correctement le comportement aléatoire 
 ## 5. Ce qui reste à faire
 - **Smells non traités** :
   - Remplacer les entiers magiques (0, 1, 2) de `Board.java` par un `enum CellState`.
-- **Bugs découverts** : La taille de `MISTACHE` est de 3 cases (et non 2), nécessitant 3 tirs consécutifs pour l'endormir complètement.
+- **Bugs découverts** : La taille de `MISTACHE` est de 3 cases (et non 2), nécessitant 3 tirs consécutifs pour l'endormir complètement. 
+- Problèmes de fautes d'orthographe dans les tests, qui ne passaient donc pas. Il fallait corriger les fautes d'orthographe pour que les tests passent au vert.
+- Utilisation de classe qui n'existe pas dans le code source (`CoordinatePoints`), qui a été remplacée par `Coordinate`.
 - **Avec une heure de plus** : Nous ajouterions des tests unitaires sur `Board.placeCat()` pour tester et valider les collisions de chats et les placements hors-limites, ainsi qu'un Test Data Builder pour simplifier les setups.
