@@ -42,6 +42,21 @@ class RandomFightTest {
         assertThat(attack.col()).isBetween(0, 9);
     }
 
+    @Test
+    @DisplayName("chooseAttack coordinates should never be negative")
+        void chooseAttack_ShouldNeverReturnNegativeCoordinates() {
+
+            // Arrange
+           RandomFight fight = new RandomFight();
+
+           // Act
+           CoordinatePoints attack = fight.chooseAttack();
+
+           // Assert
+           assertThat(attack.row()).isGreaterThanOrEqualTo(0);
+           assertThat(attack.col()).isGreaterThanOrEqualTo(0);
+       }
+
 }
 
 //une commit apres chaque test!
