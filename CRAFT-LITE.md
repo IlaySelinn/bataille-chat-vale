@@ -2,7 +2,7 @@
 
 ## 1. Lancement
 - **Binôme** : Luisa Couette & Ilay Selin Koçak
-- **Commande exacte pour lancer les tests** : `./mvnw test`
+- **Commande exacte pour lancer les tests** : `./mvnw test ou ./mvn test`
 
 ## 2. Diagnostic (tag `lite-start`)
 - **Métriques relevées** : 0 issue bloquante, classe la plus complexe : `Board.java`.
