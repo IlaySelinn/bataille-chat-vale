@@ -1,7 +1,7 @@
 # CRAFT LITE : Bataille Chat-Vale
 
 ## 1. Lancement
-- **Binôme** : Luisa Couette & Ilayda Selin Koçak
+- **Binôme** : Luisa Couette & Ilay Selin Koçak
 - **Commande exacte pour lancer les tests** : `./mvnw test`
 
 ## 2. Diagnostic (tag `lite-start`)
@@ -17,20 +17,30 @@
 Le smell n°2 car il empêche de tester correctement le comportement aléatoire du jeu.
 
 ## 3. Tests écrits
-- **Classe testée** : `TurnManagerTest.java` (règles de jeu et fin de partie).
+- **Classes testées** : `TurnManagerTest.java` et `RandomFightTest.java`.
 - **Liste des tests unitaires (E1)** :
-  - `shouldStartAtTurnOne()` : vérifie que le jeu commence bien au tour 1.
-  - `shouldSwitchPlayerAndIncrementTurnOnNextTurn()` : vérifie que le tour passe à 2 et que l'adversaire s'inverse.
-  - `shouldReturnFalseIfPlayerHasAliveCats()` : vérifie que la partie continue (`false`) tant qu'un chat est en vie sur le plateau.
-  - `shouldReturnTrueWhenAllCatsAreAsleep()` : vérifie que la partie se termine (`true`) quand tous les chats sont touchés/endormis.
-- **Test paramétré (E2)** :
-  - `shouldNotBeGameOverWhenACatIsAlive(CatType catType)` : teste avec `@ParameterizedTest` et `@CsvSource` sur 3 types de chats différents (`TOM`, `MISTACHE`, `PUFI`) vérifie que la règle s'applique à toute la flotte féline.
-- **Test double utilisé (E3)** :
+  - *TurnManagerTest* :
+    - `shouldStartAtTurnOne()` : vérifie que le jeu commence bien au tour 1.
+    - `shouldSwitchPlayerAndIncrementTurnOnNextTurn()` : vérifie que le tour passe à 2 et que l'adversaire s'inverse.
+    - `shouldReturnFalseIfPlayerHasAliveCats()` : vérifie que la partie continue (`false`) tant qu'un chat est en vie sur le plateau.
+    - `shouldReturnTrueWhenAllCatsAreAsleep()` : vérifie que la partie se termine (`true`) quand tous les chats sont touchés/endormis.
+  - *RandomFightTest* :
+    - `chooseAttack_ShouldReturnCoordinatesWithinGridBounds()` : vérifie que les coordonnées retournées sont non nulles et comprises entre 0 et 9.
+    - `chooseAttack_ShouldNeverReturnNegativeCoordinates()` : s'assure que les coordonnées générées ne sont jamais négatives (≥ 0).
+    - `chooseAttack_ShouldNeverExceedMaximumGridIndex()` : s'assure que les coordonnées ne dépassent jamais la taille max de la grille (≤ 9).
+    - `chooseAttack_ShouldReturnNewInstanceOnEachCall()` : valide qu'une nouvelle instance distincte de `CoordinatePoints` est retournée à chaque tir.
+- **Tests paramétrés (E2)** :
+  - `shouldNotBeGameOverWhenACatIsAlive(CatType catType)` : teste avec `@ParameterizedTest` et `@CsvSource` sur 3 types de chats (`TOM`, `MISTACHE`, `PUFI`) pour vérifier que la règle s'applique à toute la flotte féline.
+  - `chooseAttack_shouldAlwaysStayWithinBounds_AcrossMultipleRuns(int runNumber)` : teste avec `@ParameterizedTest` et `@ValueSource(ints = {1, 2, 3, 4, 5})` pour s'assurer de la stabilité des coordonnées dans la grille [0-9] sur 5 exécutions successives.
+- **Tests doubles utilisés (E3)** :
   - `shouldCheckGameOverWithMockPlayer()` : isole la dépendance vers `Player` et `Board` à l'aide de **Mockito** (`mock(Player.class)` et `mock(Board.class)`), pour tester `TurnManager` sans dépendre de l'implémentation concrète du plateau.
+  - `chooseAttack_ShouldReturnDeterministicCoordinates_WhenRandomIsMocked()` : isole la dépendance aléatoire en mockant `java.util.Random` (`mock(Random.class)` et `thenReturn(3, 7)`), permettant de tester le choix d'attaque de `RandomFight` de façon 100% déterministe.
 
 ## 4. Refactoring réalisé
+
+### Refactoring 1 : `TurnManager.java` (Smell n°1)
 - **Technique utilisée** : **Extract Method** (extraction de méthode).
-- **Tests qui le sécurisent** : Les 8 tests de `TurnManagerTest` (tous au vert avant et après le refactoring).
+- **Tests qui le sécurisent** : Les tests de `TurnManagerTest` (tous au vert avant et après le refactoring).
 - **Extrait avant / après** :
   - *Avant* :
     ```java
@@ -67,8 +77,48 @@ Le smell n°2 car il empêche de tester correctement le comportement aléatoire 
   - Tests : `f175ab0`, `2fe39ca`, `111d750`, `eb7805b`, `e3e5d2c`
   - Refactoring : `00a0cb5`
 
+### Refactoring 2 (Bonus) : `RandomFight.java` (Smell n°2)
+- **Technique utilisée** : **Dependency Injection** (Injection de dépendance par constructeur).
+- **Tests qui le sécurisent** : La suite `RandomFightTest` (bornes, non-nullité, instance distincte et test avec mock déterministe).
+- **Extrait avant / après** :
+  - *Avant* :
+    ```java
+    public class RandomFight {
+        private final java.util.Random random = new java.util.Random();
+
+        public CoordinatePoints chooseAttack() {
+            int row = random.nextInt(10);
+            int col = random.nextInt(10);
+            return new CoordinatePoints(row, col);
+        }
+    }
+    ```
+  - *Après* :
+    ```java
+    public class RandomFight {
+        private final Random random;
+
+        public RandomFight(Random random) {
+            this.random = random;
+        }
+
+        public RandomFight() {
+            this(new Random());
+        }
+
+        public CoordinatePoints chooseAttack() {
+            int row = random.nextInt(10);
+            int col = random.nextInt(10);
+            return new CoordinatePoints(row, col);
+        }
+    }
+    ```
+- **Commits concernés** :
+  - Tests : `e14e339`, `e430597`, `4bec61c`, `975281e`, `66db800`, `fc4970d`
+  - Refactoring : `303ee8f`
+
 ## 5. Ce qui reste à faire
 - **Smells non traités** :
   - Remplacer les entiers magiques (0, 1, 2) de `Board.java` par un `enum CellState`.
 - **Bugs découverts** : La taille de `MISTACHE` est de 3 cases (et non 2), nécessitant 3 tirs consécutifs pour l'endormir complètement.
-- **Avec une heure de plus** : Nous ajouterions des tests unitaires sur `Board.placeCat()` pour tester et valider les collisions de bateaux/chats et les placements hors-limites.
+- **Avec une heure de plus** : Nous ajouterions des tests unitaires sur `Board.placeCat()` pour tester et valider les collisions de chats et les placements hors-limites, ainsi qu'un Test Data Builder pour simplifier les setups.
