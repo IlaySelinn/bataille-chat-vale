@@ -57,6 +57,21 @@ class RandomFightTest {
            assertThat(attack.col()).isGreaterThanOrEqualTo(0);
        }
 
+       @Test
+       @DisplayName("chooseAttack coordinates should never exceed maximum grid index of 9")
+       void chooseAttack_ShouldNeverExceedMaximumGridIndex()  {
+
+           // arrange
+           RandomFight fight = new RandomFight();
+
+           // act
+           CoordinatePoints attack = fight.chooseAttack();
+
+           // assert
+           assertThat(attack.row()).isLessThanOrEqualTo(9);
+           assertThat(attack.col()).isLessThanOrEqualTo(9);
+       }
+
 }
 
 //une commit apres chaque test!
