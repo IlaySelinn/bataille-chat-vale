@@ -72,6 +72,20 @@ class RandomFightTest {
            assertThat(attack.col()).isLessThanOrEqualTo(9);
        }
 
+       @Test
+       @DisplayName("chooseAttack should return a new CoordinatesPoints instance on each invocation")
+        void chooseAttack_ShouldReturnNewInstanceOnEachCall() {
+
+            //arrange
+            RandomFight fight = new RandomFight();
+
+            //act
+            CoordinatePoints firstAttack = fight.chooseAttack();
+            CoordinatePoints secondAttack = fight.chooseAttack();
+
+            //assert
+            assertThat(firstAttack).isNotSameAs(secondAttack);
+        }
 }
 
 //une commit apres chaque test!
