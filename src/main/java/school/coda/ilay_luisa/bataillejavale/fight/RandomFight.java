@@ -3,6 +3,7 @@ package school.coda.ilay_luisa.bataillejavale.fight;
 import school.coda.ilay_luisa.bataillejavale.model.CoordinatePoints;
 import java.util.Random;
 
+
 public class RandomFight {
     private final Random random;
 

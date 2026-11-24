@@ -6,6 +6,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import school.coda.ilay_luisa.bataillejavale.fight.RandomFight;
 import school.coda.ilay_luisa.bataillejavale.model.CoordinatePoints;
+import java.util.Random;
+import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -86,6 +88,25 @@ class RandomFightTest {
             //assert
             assertThat(firstAttack).isNotSameAs(secondAttack);
         }
+
+        @Test
+        @DisplayName("chooseAttck should return deterministic coordinates when Random is mocked")
+            void chooseAttack_ShouldReturnDeterministicCoordinates_WhenRandomIsMocked() {
+
+                //arrange
+                Random mockRandom = Mockito.mock(Random.class);
+                Mockito.when(mockRandom.nextInt(10)).thenReturn(3,7);
+                RandomFight fight = new RandomFight(mockRandom);
+
+                //act
+                CoordinatePoints attack = fight.chooseAttack();
+
+                //assert
+                assertThat(attack.row()).isEqualTo(3);
+                assertThat(attack.col()).isEqualTo(7);
+                Mockito.verify(mockRandom, Mockito.times(2)).nextInt(10);
+
+            }
 }
 
 //une commit apres chaque test!
